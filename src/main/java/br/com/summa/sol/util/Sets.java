@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Convenience class for working with <code>Set</code>s.
+ * Convenience class for working with {@link java.util.Set}s.
  *
  * @author Einar Saukas
  */
@@ -35,7 +35,7 @@ public final class Sets {
     }
 
     /**
-     * Creates new <code>HashSet < T ></code> from a sequence of elements T or array T[]
+     * Creates new <code>HashSet<T></code> from a sequence of elements T or array T[]
      */
     public static <T> HashSet<T> asHashSet(T... values) {
         HashSet<T> set = new HashSet<T>(values.length);

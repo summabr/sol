@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * Convenience class for working with <code>List</code>s.
+ * Convenience class for working with {@link java.util.List}s.
  *
  * @author Einar Saukas
  */
@@ -35,17 +35,16 @@ public final class Lists {
     }
 
     /**
-     * Breaks list into smaller sublists with the specified (maximum) size.
-     *
+     * Breaks list into smaller sublists with the specified (maximum) size.<br>
+     * <br>
      * Typical usage:
      *
-     * <code>
+     * <pre>
      * List<String> all = ...
-     *
      * for (List<String> sub : Lists.split(all, 20)) {
      *     ...
      * }
-     * </code>
+     * </pre>
      */
     public static <T> List<T>[] split(final List<T> list, final int subsize) {
         int size = list.size();
@@ -61,26 +60,28 @@ public final class Lists {
     }
 
     /**
-     * Breaks data into smaller sublists with the specified (maximum) size.
-     *
+     * Breaks data into smaller sublists with the specified (maximum) size.<br>
+     * <br>
      * Instead of allocating everything in memory at once, this variant will
      * just allocate one sublist at a time, while data is iterated, thus
      * this variant is especially useful for processing very large amounts
      * of data that may not even fit in memory (while reading from file or
-     * database for instance).
-     *
+     * database for instance).<br>
+     * <br>
      * Typical usage:
      *
-     * <code>
+     * <pre>
      * for (List<X> sub : Lists.split(all.iterator(), 20)) {
      *     ...
      * }
-     * </code>
+     * </pre>
      */
     public static <T> Iterable<List<T>> split(final Iterator<T> it, final int subsize) {
         return new Iterable<List<T>>() {
+            @Override
             public Iterator<List<T>> iterator() {
                 return new Iterator<List<T>>() {
+                    @Override
                     public List<T> next() {
                         List<T> list = new ArrayList<T>();
                         while (list.size() < subsize && it.hasNext()) {
@@ -92,10 +93,12 @@ public final class Lists {
                         return list;
                     }
 
+                    @Override
                     public boolean hasNext() {
                         return it.hasNext();
                     }
 
+                    @Override
                     public void remove() {
                         throw new UnsupportedOperationException();
                     }

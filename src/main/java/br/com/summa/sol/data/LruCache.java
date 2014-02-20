@@ -20,15 +20,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Generic local cache with limited size.
- *
+ * Generic local cache with limited size.<br>
+ * <br>
  * It automatically discards least recently accessed entries so it never
  * exceeds the maximum specified size.
  *
  * @author Einar Saukas
  */
 public class LruCache<K,V> extends LinkedHashMap<K,V> {
-
     private static final long serialVersionUID = 1L;
 
     // same as DEFAULT_INITIAL_CAPACITY
@@ -44,6 +43,7 @@ public class LruCache<K,V> extends LinkedHashMap<K,V> {
         this.maxEntries = maxEntries;
     }
 
+    @Override
     protected boolean removeEldestEntry(Map.Entry<K,V> eldest) {
         return size() > maxEntries;
     }

@@ -31,8 +31,7 @@ import br.com.summa.sol.util.Nullables;
  *
  * @author Einar Saukas
  */
-public class Trio<X, Y, Z> implements Serializable
-{
+public class Trio<X, Y, Z> implements Serializable {
     private final static long serialVersionUID = 1L;
 
     private final X x;
@@ -57,12 +56,13 @@ public class Trio<X, Y, Z> implements Serializable
         return z;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
         if (obj instanceof Trio) {
-            final Trio<?, ?, ?> that = (Trio<?, ?, ?>) obj;
+            final Trio<?, ?, ?> that = (Trio<?, ?, ?>)obj;
             return Nullables.equals(x, that.x) &&
                    Nullables.equals(y, that.y) &&
                    Nullables.equals(z, that.z);
@@ -70,10 +70,12 @@ public class Trio<X, Y, Z> implements Serializable
         return false;
     }
 
+    @Override
     public int hashCode() {
         return Nullables.hashCode(x, y, z);
     }
 
+    @Override
     public String toString() {
         return "(" + x + "," + y + "," + z + ")";
     }

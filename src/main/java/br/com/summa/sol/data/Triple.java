@@ -19,7 +19,7 @@ package br.com.summa.sol.data;
 import br.com.summa.sol.util.Nullables;
 
 /**
- * A comparable Trio.
+ * A Comparable {@link Trio}.
  *
  * DISCLAIMER: This class is only intended to temporarily store a disjoint
  * set of objects, for instance when a certain method needs to return three
@@ -31,7 +31,6 @@ import br.com.summa.sol.util.Nullables;
  */
 public class Triple<X extends Comparable<X>, Y extends Comparable<Y>, Z extends Comparable<Z>>
 extends Trio<X, Y, Z> implements Comparable<Triple<X, Y, Z>> {
-
     private final static long serialVersionUID = 1L;
 
     public Triple(X x, Y y, Z z)
@@ -39,6 +38,7 @@ extends Trio<X, Y, Z> implements Comparable<Triple<X, Y, Z>> {
         super(x, y, z);
     }
 
+    @Override
     public int compareTo(Triple<X, Y, Z> other)
     {
         if (this == other) {

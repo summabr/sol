@@ -17,8 +17,8 @@
 package br.com.summa.sol.util;
 
 /**
- * Convenience class for working with (possibly <code>null</code>) objects.
- *
+ * Convenience class for working with (possibly <code>null</code>) objects.<br>
+ * <br>
  * This implementation does not use reflection, thus avoiding security restrictions
  * and providing roughly the same performance as a "manual" implementation.
  *
@@ -33,11 +33,11 @@ public final class Nullables {
     }
 
     /**
-     * Calculates <code>hashCode()</code> for a sequence of (possibly <code>null</code>) objects.
-     *
-     * Typical usage:
-     *
-     * <code>
+     * Calculates <code>hashCode()</code> for a sequence of (possibly <code>null</code>)
+     * objects.<br>
+     * <br>
+     * Typical usage:<br>
+     * <pre>
      * public class Example {
      *     private ... x;
      *     private ... y;
@@ -48,7 +48,7 @@ public final class Nullables {
      *         return Nullables.hashCode(x, y, z);
      *     }
      * }
-     * </code>
+     * </pre>
      */
     public static int hashCode(Object... objs) {
         final int prime = 31;
@@ -61,12 +61,12 @@ public final class Nullables {
     }
 
     /**
-     * Indicates whether two (possibly <code>null</code>) objects are "equal", i.e. they
-     * are both <code>null</code>, or not <code>null</code> with <code>x.equals(y)</code>.
-     *
-     * Typical usage:
-     *
-     * <code>
+     * Indicates whether two (possibly <code>null</code>) objects are "equal", i.e.
+     * they are both <code>null</code>, or not <code>null</code> with
+     * <code>x.equals(y)</code>.<br>
+     * <br>
+     * Typical usage:<br>
+     * <pre>
      * public class Example {
      *     private ... x;
      *     private ... y;
@@ -77,7 +77,7 @@ public final class Nullables {
      *             return true;
      *         }
      *         if (obj instanceof Example) {
-     *             final Example that = (Example) obj;
+     *             final Example that = (Example)obj;
      *             return Nullables.equals(x, that.x) &&
      *                    Nullables.equals(y, that.y) &&
      *                    Nullables.equals(z, that.z);
@@ -85,7 +85,7 @@ public final class Nullables {
      *         return false;
      *     }
      * }
-     * </code>
+     * </pre>
      */
     public static <T> boolean equals(T x, T y) {
         if (x == y) {

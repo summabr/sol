@@ -19,7 +19,7 @@ package br.com.summa.sol.data;
 import br.com.summa.sol.util.Nullables;
 
 /**
- * A comparable Pair.
+ * A Comparable {@link Pair}.
  *
  * DISCLAIMER: This class is only intended to temporarily store a disjoint
  * pair of objects, for instance when a certain method needs to return two
@@ -31,7 +31,6 @@ import br.com.summa.sol.util.Nullables;
  */
 public class Duple<X extends Comparable<X>, Y extends Comparable<Y>>
 extends Pair<X, Y> implements Comparable<Duple<X, Y>> {
-
     private final static long serialVersionUID = 1L;
 
     public Duple(X x, Y y)
@@ -39,6 +38,7 @@ extends Pair<X, Y> implements Comparable<Duple<X, Y>> {
         super(x, y);
     }
 
+    @Override
     public int compareTo(Duple<X, Y> other)
     {
         if (this == other) {

@@ -32,7 +32,6 @@ import br.com.summa.sol.util.Nullables;
  * @author Einar Saukas
  */
 public class Pair<X, Y> implements Serializable {
-
     private final static long serialVersionUID = 1L;
 
     private final X x;
@@ -51,6 +50,7 @@ public class Pair<X, Y> implements Serializable {
         return y;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -63,10 +63,12 @@ public class Pair<X, Y> implements Serializable {
         return false;
     }
 
+    @Override
     public int hashCode() {
         return Nullables.hashCode(x, y);
     }
 
+    @Override
     public String toString() {
         return "(" + x + "," + y + ")";
     }
