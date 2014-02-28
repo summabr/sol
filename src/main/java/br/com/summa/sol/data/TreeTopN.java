@@ -17,7 +17,6 @@
 package br.com.summa.sol.data;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -161,8 +160,30 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
 
     @Override
     public Iterator<E> iterator() {
-        // FIXME
-        return (Iterator<E>)Arrays.asList(toArray()).iterator();
+        return new Iterator<E>() {
+            Iterator<Entry<E, LinkedList<E>>> iter = data.entrySet().iterator();
+            private Iterator<E> subIter = null;
+
+            @Override
+            public E next() {
+                if (subIter != null && subIter.hasNext()) {
+                    return subIter.next();
+                }
+                Entry<E, LinkedList<E>> entry = iter.next();
+                subIter = entry.getValue().iterator();
+                return entry.getKey();
+            }
+
+            @Override
+            public boolean hasNext() {
+                return (subIter != null && subIter.hasNext()) || iter.hasNext();
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 
     /**

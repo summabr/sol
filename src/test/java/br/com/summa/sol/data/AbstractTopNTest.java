@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractTopNTest {
+public abstract class AbstractTopNTest {
     protected void validate(int n, List<Integer> input, List<Integer> expected) {
         validate(new ListTopN<Integer>(n), input, expected);
         validate(new TreeTopN<Integer>(n), input, expected);
