@@ -22,18 +22,18 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 /**
- * A generic collection limited to size <code>N</code>. If more than <code>N</code>
- * elements are added, it will keep the greatest <code>N</code> elements only,
- * discarding the others.<br>
+ * A generic collection strictly limited to size <code>N</code>. If more than
+ * <code>N</code> elements are added, it will keep the greatest <code>N</code>
+ * elements only, discarding the others.<br>
  * <br>
  * Duplicate elements are allowed. For 2 arbitrary elements <code>x</code> and
  * <code>y</code> such that <code>x.compareTo(y) == 0</code>, the oldest element
- * in this collection will be considered greater.<br>
+ * in this collection will be treated as greater.<br>
  * <br>
  * This collection is optimized for small values of <code>N</code> (typically
  * obtaining the "top5" or "top10" elements from a large set), keeping at most
  * <code>N</code> elements stored in a <code>LinkedList</code>. For much larger
- * values of <code>N</code>, use {@link TreeTopN}.
+ * values of <code>N</code>, use {@link TreeTopN} instead.
  *
  * @author Einar Saukas
  *
@@ -48,7 +48,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Constructs an empty collection limited to (greatest) <code>N</code> elements.
      *
-     * @param n maximum number of elements for this collection
+     * @param n strict limit <code>N</code> on the number of elements stored in this collection
      */
     public ListTopN(int n) {
         this.n = n;

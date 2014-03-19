@@ -44,7 +44,7 @@ public final class Sets {
     }
 
     /**
-     * Creates new <code>HashSet</code> that contains all elements (without repetition) 
+     * Creates new <code>HashSet</code> that contains all elements (without repetition)
      * from both provided <code>HashSet</code>s.
      */
     public static <T> HashSet<T> union(Collection<T> x, Collection<T> y) {

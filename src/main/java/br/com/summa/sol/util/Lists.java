@@ -35,6 +35,20 @@ public final class Lists {
     }
 
     /**
+     * Obtain the first element from a list, or <code>null</code> if the list is <code>null</code> or empty.
+     */
+    public static <T> T first(List<T> list) {
+        return list != null && list.size() > 0 ? list.get(0) : null;
+    }
+
+    /**
+     * Obtain the last element from a list, or <code>null</code> if the list is <code>null</code> or empty.
+     */
+    public static <T> T last(List<T> list) {
+        return list != null && list.size() > 0 ? list.get(list.size()-1) : null;
+    }
+
+    /**
      * Breaks list into smaller sublists with the specified (maximum) size.<br>
      * <br>
      * Typical usage:
