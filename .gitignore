@@ -4,3 +4,14 @@
 *.jar
 *.war
 *.ear
+
+# Mac files #
+.DS_Store
+
+# Build dirs #
+target
+
+# Tools related #
+.project
+.classpath
+.settings
