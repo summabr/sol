@@ -241,6 +241,10 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
         throw new UnsupportedOperationException();
     }
 
+    public E get(int index) {
+        return list.get(index);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
