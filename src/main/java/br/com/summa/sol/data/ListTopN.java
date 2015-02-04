@@ -42,8 +42,9 @@ import java.util.ListIterator;
 public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     private static final long serialVersionUID = 1L;
 
-    private int n;
-    private LinkedList<E> list = new LinkedList<E>();
+    private final int n;
+    private final ExclusionStrategy<E> exclusionStrategy;
+    private final LinkedList<E> list = new LinkedList<E>();
 
     /**
      * Constructs an empty collection limited to (greatest) <code>N</code> elements.
@@ -52,10 +53,24 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      */
     public ListTopN(int n) {
         this.n = n;
+        this.exclusionStrategy = null;
     }
 
-    private void insertSorted(E elem) {
-        ListIterator<E> it = list.listIterator(list.size());
+    /**
+     * Constructs an empty collection limited to (greatest) <code>N</code> elements. It also
+     * defines an "exclusion strategy" such that, if any 2 elements are evaluated as "mutually
+     * exclusive", only the greater element will be stored.
+     *
+     * @param n strict limit <code>N</code> on the number of elements stored in this collection
+     * @param exclusionStrategy comparator strategy to check if 2 elements are mutually exclusive
+     */
+    public ListTopN(int n, ExclusionStrategy<E> exclusionStrategy) {
+        this.n = n;
+        this.exclusionStrategy = exclusionStrategy;
+    }
+
+    private void insertSorted(E elem, ListIterator<E> it) {
+        //ListIterator<E> it = list.listIterator(list.size());
         while (it.hasPrevious()) {
             if (it.previous().compareTo(elem) >= 0) {
                 it.next();
@@ -79,13 +94,28 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      */
     @Override
     public boolean add(E elem) {
-        if (list.size() >= n) {
-            if (list.getLast().compareTo(elem) >= 0) {
-                return false;
+        if (list.size() >= n && list.getLast().compareTo(elem) >= 0) {
+            return false;
+        }
+        if (exclusionStrategy != null) {
+            ListIterator<E> it = list.listIterator(list.size());
+            while (it.hasPrevious()) {
+                E other = it.previous();
+                if (exclusionStrategy.mutuallyExclusive(elem, other)) {
+                    if (other.compareTo(elem) >= 0) {
+                        return false;
+                    } else {
+                        it.remove();
+                        insertSorted(elem, it);
+                        return true;
+                    }
+                }
             }
+        }
+        if (list.size() >= n) {
             list.pollLast();
         }
-        insertSorted(elem);
+        insertSorted(elem, list.listIterator(list.size()));
         return true;
     }
 

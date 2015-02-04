@@ -16,6 +16,8 @@
 
 package br.com.summa.sol.util;
 
+import java.util.Collection;
+
 /**
  * Convenience class for working with (possibly <code>null</code>) objects.<br>
  * <br>
@@ -149,5 +151,19 @@ public final class Nullables {
      */
     public static <T extends Comparable<T>> int compareToWithNullsLast(T x, T y) {
         return x == null ? y == null ? 0 : 1 : y == null ? -1 : x.compareTo(y);
+    }
+
+    /**
+     * Indicates whether provided Collection is either <code>null</code> or empty.
+     */
+    public static boolean isNullOrEmpty(final Collection<?> obj) {
+        return obj == null || obj.isEmpty();
+    }
+
+    /**
+     * Indicates whether provided String is either <code>null</code> or empty.
+     */
+    public static boolean isNullOrEmpty(final String str) {
+        return str == null || str.isEmpty();
     }
 }
