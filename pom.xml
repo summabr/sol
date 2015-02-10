@@ -10,7 +10,7 @@
 
 	<groupId>br.com.summa</groupId>
 	<artifactId>sol</artifactId>
- 	<version>0.2.0-SNAPSHOT</version>
+ 	<version>0.2.0</version>
   	<packaging>jar</packaging>
 
  	<name>SOL</name>
@@ -52,7 +52,7 @@
         <developerConnection>scm:git:git@github.com:summabr/sol.git</developerConnection>
 		<url>git@github.com:summabr/sol.git</url>
         <!-- url>http://github.com/summabr/sol/tree/master</url -->
-	    <tag>HEAD</tag>
+	    <tag>sol-0.2.0</tag>
     </scm>
 
     <issueManagement>
