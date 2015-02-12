@@ -9,5 +9,5 @@ http://www.summa.com.br
 
 ## Release info
 
-- sol-0.2.0: New features, backward compatible: limited collection, exclusion strategy, ProximityMap and Crypt utilities classes
+- sol-0.2.0: New features, backward compatible: limited collection, exclusion strategy, new Reflections, ProximityMap and Crypt convenience classes
 - sol-0.1.1: First public release
