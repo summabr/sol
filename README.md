@@ -7,6 +7,8 @@ The Summa Open Library is a general-purpose set of open source Java components, 
 
 http://www.summa.com.br
 
+http://summabr.github.io/sol/
+
 ## Release info
 
 - sol-0.2.0: New features, backward compatible: limited collection, exclusion strategy, new Reflections, ProximityMap and Crypt convenience classes
