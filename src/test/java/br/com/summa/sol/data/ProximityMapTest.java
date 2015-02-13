@@ -30,14 +30,14 @@ import br.com.summa.sol.data.ProximityMap.Round;
 
 public class ProximityMapTest {
 
-    private static final Pair<BigDecimal, UnicodeScript> javanese = new Pair<>(new BigDecimal(-42), UnicodeScript.JAVANESE);
-    private static final Pair<BigDecimal, UnicodeScript> greek = new Pair<>(new BigDecimal(-22), UnicodeScript.GREEK);
-    private static final Pair<BigDecimal, UnicodeScript> latin = new Pair<>(new BigDecimal(0), UnicodeScript.LATIN);
-    private static final Pair<BigDecimal, UnicodeScript> gothic = new Pair<>(new BigDecimal(22), UnicodeScript.GOTHIC);
+    private static final Pair<BigDecimal, UnicodeScript> javanese = new Pair<BigDecimal, UnicodeScript>(new BigDecimal(-42), UnicodeScript.JAVANESE);
+    private static final Pair<BigDecimal, UnicodeScript> greek = new Pair<BigDecimal, UnicodeScript>(new BigDecimal(-22), UnicodeScript.GREEK);
+    private static final Pair<BigDecimal, UnicodeScript> latin = new Pair<BigDecimal, UnicodeScript>(new BigDecimal(0), UnicodeScript.LATIN);
+    private static final Pair<BigDecimal, UnicodeScript> gothic = new Pair<BigDecimal, UnicodeScript>(new BigDecimal(22), UnicodeScript.GOTHIC);
 
     @Test
     public void validateRoundDown() {
-        ProximityMap<UnicodeScript> prox = new ProximityMap<>();
+        ProximityMap<UnicodeScript> prox = new ProximityMap<UnicodeScript>();
 
         putAll(prox, Arrays.asList(javanese, greek, gothic, latin));
 
@@ -66,7 +66,7 @@ public class ProximityMapTest {
 
     @Test
     public void validateRoundUp() {
-        ProximityMap<UnicodeScript> prox = new ProximityMap<>(Round.UP);
+        ProximityMap<UnicodeScript> prox = new ProximityMap<UnicodeScript>(Round.UP);
 
         putAll(prox, Arrays.asList(javanese, greek, gothic, latin));
 
@@ -95,7 +95,7 @@ public class ProximityMapTest {
 
     @Test
     public void validateSingle() {
-        ProximityMap<UnicodeScript> prox = new ProximityMap<>();
+        ProximityMap<UnicodeScript> prox = new ProximityMap<UnicodeScript>();
 
         putAll(prox, Arrays.asList(javanese));
 
@@ -107,7 +107,7 @@ public class ProximityMapTest {
 
     @Test
     public void validateEmpty() {
-        ProximityMap<UnicodeScript> prox = new ProximityMap<>();
+        ProximityMap<UnicodeScript> prox = new ProximityMap<UnicodeScript>();
 
         validate(prox, -1000, null);
         validate(prox, 1000, null);
