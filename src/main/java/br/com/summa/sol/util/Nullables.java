@@ -166,4 +166,32 @@ public final class Nullables {
     public static boolean isNullOrEmpty(final String str) {
         return str == null || str.isEmpty();
     }
+
+    /**
+     * Returns first non-null element from a sequence
+     */
+    public static <T> T coalesce(T... list) {
+        if (list != null) {
+            for (T obj : list) {
+                if (obj != null) {
+                    return obj;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns first non-null element from a sequence
+     */
+    public static <T> T coalesce(T a, T b) {
+        return a != null ? a : b;
+    }
+
+    /**
+     * Returns first non-null element from a sequence
+     */
+    public static <T> T coalesce(T a, T b, T c) {
+        return a != null ? a : b != null ? b : c;
+    }
 }
