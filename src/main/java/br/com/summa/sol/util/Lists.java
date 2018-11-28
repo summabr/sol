@@ -35,14 +35,14 @@ public final class Lists {
     }
 
     /**
-     * Obtain the first element from a list, or <code>null</code> if the list is <code>null</code> or empty.
+     * Obtains the first element from a list, or <code>null</code> if the list is <code>null</code> or empty.
      */
     public static <T> T first(List<T> list) {
         return list != null && list.size() > 0 ? list.get(0) : null;
     }
 
     /**
-     * Obtain the last element from a list, or <code>null</code> if the list is <code>null</code> or empty.
+     * Obtains the last element from a list, or <code>null</code> if the list is <code>null</code> or empty.
      */
     public static <T> T last(List<T> list) {
         return list != null && list.size() > 0 ? list.get(list.size()-1) : null;
@@ -54,8 +54,8 @@ public final class Lists {
      * Typical usage:
      *
      * <pre>
-     * List<String> all = ...
-     * for (List<String> sub : Lists.split(all, 20)) {
+     * List<T> all = ...
+     * for (List<T> sub : Lists.split(all, 20)) {
      *     ...
      * }
      * </pre>
@@ -85,8 +85,9 @@ public final class Lists {
      * Typical usage:
      *
      * <pre>
-     * for (List<X> sub : Lists.split(all.iterator(), 20)) {
-     *     ...
+     * Collection<T> all = ...
+     * for (List<T> sub : Lists.split(all.iterator(), 20)) {
+     *    ...
      * }
      * </pre>
      */
