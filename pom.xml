@@ -10,25 +10,25 @@
 
 	<groupId>br.com.summa</groupId>
 	<artifactId>sol</artifactId>
- 	<version>0.2.1-SNAPSHOT</version>
-  	<packaging>jar</packaging>
+	<version>0.2.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
- 	<name>SOL</name>
+	<name>SOL</name>
 	<description>The Summa Open Library is a general-purpose set of open source Java components</description>
-    <inceptionYear>2012</inceptionYear>
+	<inceptionYear>2012</inceptionYear>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-  <organization>
-    <name>Summa Technologies do Brasil</name>
-    <url>http://summa.com.br/</url>
-  </organization>
+	<organization>
+		<name>Summa Technologies do Brasil</name>
+		<url>http://summa.com.br/</url>
+	</organization>
 
 
 	<properties>
@@ -37,52 +37,52 @@
 		<site.deploy.id>gh-pages</site.deploy.id>
 		<site.deploy.url />
 
-	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<repositoryName>sol</repositoryName>
 		<repositoryOwner>summabr</repositoryOwner>
 	</properties>
 
-   <url>${site.url}</url>
+	<url>${site.url}</url>
 
 
-    <scm>
-        <connection>scm:git:git@github.com:summabr/sol.git</connection>
-        <developerConnection>scm:git:git@github.com:summabr/sol.git</developerConnection>
+	<scm>
+		<connection>scm:git:git@github.com:summabr/sol.git</connection>
+		<developerConnection>scm:git:git@github.com:summabr/sol.git</developerConnection>
 		<url>git@github.com:summabr/sol.git</url>
-        <!-- url>http://github.com/summabr/sol/tree/master</url -->
-	    <tag>HEAD</tag>
-    </scm>
+		<!-- url>http://github.com/summabr/sol/tree/master</url -->
+		<tag>HEAD</tag>
+	</scm>
 
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/summabr/sol/issues</url>
-    </issueManagement>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/summabr/sol/issues</url>
+	</issueManagement>
 
 	<distributionManagement>
-		        
-	    <site>
-	      <id>${site.deploy.id}</id>
-	      <name>Deployment through GitHub's site deployment plugin</name>
-	      <url>${site.deploy.url}</url>
-	    </site>
-	    
+
+		<site>
+			<id>${site.deploy.id}</id>
+			<name>Deployment through GitHub's site deployment plugin</name>
+			<url>${site.deploy.url}</url>
+		</site>
+
 	</distributionManagement>
 
-    <developers>
-        <developer>
-            <id>einar-saukas</id>
-            <name>Einar Saukas</name>
-            <roles>
-                <role>project lead</role>
-                <role>developer</role>
-            </roles>
-            <organization>Summa Technologies do Brasil</organization>
-            <organizationUrl>www.summa.com.br</organizationUrl>
-            <timezone>+3</timezone>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<id>einar-saukas</id>
+			<name>Einar Saukas</name>
+			<roles>
+				<role>project lead</role>
+				<role>developer</role>
+			</roles>
+			<organization>Summa Technologies do Brasil</organization>
+			<organizationUrl>www.summa.com.br</organizationUrl>
+			<timezone>+3</timezone>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>
@@ -95,7 +95,7 @@
 
 	<build>
 		<!-- Solve http://jira.codehaus.org/browse/MRELEASE-812 bug:
-			 "prepare" does not commit before tagging and therefore deploys snapshot instead of release -->
+			"prepare" does not commit before tagging and therefore deploys snapshot instead of release -->
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -115,7 +115,7 @@
 
 		<plugins>
 
-  			<!-- Configure Maven site plugin for Reflow skin and Markdown support -->
+			<!-- Configure Maven site plugin for Reflow skin and Markdown support -->
 
 			<!-- Sol compile with maven-compiler-plugin-->
 			<plugin>
@@ -129,227 +129,227 @@
 			</plugin>
 
 			<!-- Maven-license-plugin -->
-            <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <version>1.10.b1</version>
-                <configuration>
-                    <strictCheck>true</strictCheck>
-                    <basedir>${basedir}</basedir>
-                    <header>licenseHeader.txt</header>
-                    <quiet>false</quiet>
-                    <failIfMissing>true</failIfMissing>
-                    <skipExistingHeaders>true</skipExistingHeaders>
-                    <aggregate>false</aggregate>
-                    <includes>
-                        <include>src/**</include>
-                        <include>**/test/**</include>
-                    </includes>
-                    <excludes>
-                        <exclude>target/**</exclude>
-                        <exclude>**/resources/**</exclude>
-                    </excludes>
-                    <useDefaultExcludes>true</useDefaultExcludes>
-                    <useDefaultMapping>true</useDefaultMapping>
-                    <properties>
-                        <year>${project.inceptionYear}</year>
-                        <company>Summa Technologies do Brasil</company>
-                    </properties>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.10.b1</version>
+				<configuration>
+					<strictCheck>true</strictCheck>
+					<basedir>${basedir}</basedir>
+					<header>licenseHeader.txt</header>
+					<quiet>false</quiet>
+					<failIfMissing>true</failIfMissing>
+					<skipExistingHeaders>true</skipExistingHeaders>
+					<aggregate>false</aggregate>
+					<includes>
+						<include>src/**</include>
+						<include>**/test/**</include>
+					</includes>
+					<excludes>
+						<exclude>target/**</exclude>
+						<exclude>**/resources/**</exclude>
+					</excludes>
+					<useDefaultExcludes>true</useDefaultExcludes>
+					<useDefaultMapping>true</useDefaultMapping>
+					<properties>
+						<year>${project.inceptionYear}</year>
+						<company>Summa Technologies do Brasil</company>
+					</properties>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
-				<!-- Configure Maven site plugin to perform stage -->
-				
-				<plugin>
-				    <groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-site-plugin</artifactId>
-				    <version>3.3</version>
-				    <dependencies>
-				
-				        <dependency>
-				            <!-- Markdown support for writing website content -->
-				            <groupId>org.apache.maven.doxia</groupId>
-				            <artifactId>doxia-module-markdown</artifactId>
-				            <version>1.3</version>
-				        </dependency>
-				        
-					    <dependency>
-					        <groupId>lt.velykis.maven.skins</groupId>
-					        <artifactId>reflow-velocity-tools</artifactId>
-					        <version>1.1.1</version>
-					    </dependency>
-				
-					    <dependency>
-					        <!-- Reflow skin requires velocity 1.7 -->
-					        <groupId>org.apache.velocity</groupId>
-					        <artifactId>velocity</artifactId>
-					        <version>1.7</version>
-					    </dependency>
-				
-				    </dependencies>
-				
-				    <configuration>
-				      <generateReports>true</generateReports>
-				      <inputEncoding>UTF-8</inputEncoding>
-				      <outputEncoding>UTF-8</outputEncoding>
-				      <!-- Site deployment done using GitHub site plugin -->
-				      <skipDeploy>true</skipDeploy>
-				    </configuration>
-				    
-					<executions>
-					  <execution>
-					    <id>stage</id>
-					    <goals>
-					      <goal>stage</goal>
-					    </goals>
-					    <phase>site</phase>
-					  </execution>
-					</executions>
-				  
-				</plugin>
+			<!-- Configure Maven site plugin to perform stage -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<dependencies>
+
+					<dependency>
+						<!-- Markdown support for writing website content -->
+						<groupId>org.apache.maven.doxia</groupId>
+						<artifactId>doxia-module-markdown</artifactId>
+						<version>1.3</version>
+					</dependency>
+
+					<dependency>
+						<groupId>lt.velykis.maven.skins</groupId>
+						<artifactId>reflow-velocity-tools</artifactId>
+						<version>1.1.1</version>
+					</dependency>
+
+					<dependency>
+						<!-- Reflow skin requires velocity 1.7 -->
+						<groupId>org.apache.velocity</groupId>
+						<artifactId>velocity</artifactId>
+						<version>1.7</version>
+					</dependency>
+
+				</dependencies>
+
+				<configuration>
+					<generateReports>true</generateReports>
+					<inputEncoding>UTF-8</inputEncoding>
+					<outputEncoding>UTF-8</outputEncoding>
+					<!-- Site deployment done using GitHub site plugin -->
+					<skipDeploy>true</skipDeploy>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>stage</id>
+						<goals>
+							<goal>stage</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
+
+			</plugin>
 
 				<!-- Maven-antrun-plugin modify-markdown-->
 				<plugin>
-				    <artifactId>maven-antrun-plugin</artifactId>
-				    <version>1.7</version>
-				    <executions>
-				        <execution>
-				            <id>modify-markdown</id>
-				            <phase>pre-site</phase>
-				            <configuration>
-				                <failOnError>false</failOnError>
-				                <target>
-				                    <copy todir="${basedir}/src/site/markdown">
-				                        <fileset dir="${basedir}" includes="README.md" />
-				                    </copy>
-				                    <move file="${basedir}/src/site/markdown/README.md" tofile="${basedir}/src/site/markdown/manual.md" />
-				                    <replaceregexp file="${basedir}/src/site/markdown/manual.md" match="```.*" replace="" byline="true" />
-				                </target>
-				            </configuration>
-				            <goals>
-				                <goal>run</goal>
-				            </goals>
-				        </execution>
-				    </executions>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+					<executions>
+						<execution>
+							<id>modify-markdown</id>
+							<phase>pre-site</phase>
+							<configuration>
+								<failOnError>false</failOnError>
+								<target>
+									<copy todir="${basedir}/src/site/markdown">
+										<fileset dir="${basedir}" includes="README.md" />
+									</copy>
+									<move file="${basedir}/src/site/markdown/README.md" tofile="${basedir}/src/site/markdown/manual.md" />
+									<replaceregexp file="${basedir}/src/site/markdown/manual.md" match="```.*" replace="" byline="true" />
+								</target>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 
 		</plugins>
 	</build>
 
 	<reporting>
-    	<plugins>
+		<plugins>
 			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-project-info-reports-plugin</artifactId>
-			    <version>2.7</version>
-			    <configuration>
-			        <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-			        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-			    </configuration>
-		        <reportSets>
-			        <reportSet>
-                          <reports>
-                               <report>summary</report>
-                               <report>license</report>
-                               <report>index</report>
-                               <report>project-team</report>
-                               <report>scm</report>
-                               <report>issue-tracking</report>
-							<report>dependencies</report>
-							<report>dependency-convergence</report>
-							<report>plugins</report>
-                               <report>cim</report>
-                           </reports>
-                       </reportSet>
-                   </reportSets>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>summary</report>
+							<report>license</report>
+							<report>index</report>
+							<report>project-team</report>
+							<report>scm</report>
+							<report>issue-tracking</report>
+						<report>dependencies</report>
+						<report>dependency-convergence</report>
+						<report>plugins</report>
+							<report>cim</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 			</plugin>
 
-		    <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-javadoc-plugin</artifactId>
-		        <version>2.9</version>
-		        <reportSets>
-		          <reportSet>
-		            <reports>
-		              <report>javadoc</report>
-		            </reports>
-		          </reportSet>
-		        </reportSets>
-		    </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <linkJavadoc>true</linkJavadoc>
-                    <aggregate>true</aggregate>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>jxr</report>
-                            <report>test-jxr</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<linkJavadoc>true</linkJavadoc>
+					<aggregate>true</aggregate>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>jxr</report>
+							<report>test-jxr</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
 
-    	</plugins>
-    </reporting>
+		</plugins>
+	</reporting>
 
 	<!-- Profiles -->
 	<profiles>
 
-	    <profile>
-	      <id>stage</id>
-	      <properties>
-	        <site.deploy.url>http://github.com/summabr/sol/tree/gh-pages/</site.deploy.url>
-	      </properties>
+		<profile>
+			<id>stage</id>
+			<properties>
+				<site.deploy.url>http://github.com/summabr/sol/tree/gh-pages/</site.deploy.url>
+			</properties>
 
-	      <build>
-	        <plugins>
-	        					          
-				<!-- GitHub site-maven-plugin for deployment to GitHub pages -->
-				<plugin>
-				    <groupId>com.github.github</groupId>
-				    <artifactId>site-maven-plugin</artifactId>
-				    <version>0.9</version>
-				    <configuration>
-				      <message>Creating site for ${project.artifactId}, ${project.version}</message>
-				      <!-- this does the trick to place every module in the correct subfolder -->
-				      <path>${project.distributionManagement.site.url}</path>
-				      <merge>true</merge>
-				    </configuration>
-				    <executions>
-				      <execution>
-				        <id>github-site</id>
-				        <goals>
-				          <goal>site</goal>
-				        </goals>
-				        <phase>site-deploy</phase>
-				      </execution>
-				    </executions>
-				</plugin>
-				
-	        </plugins>
-	      </build>
-	      
-	    </profile>
+			<build>
+				<plugins>
+
+					<!-- GitHub site-maven-plugin for deployment to GitHub pages -->
+					<plugin>
+						<groupId>com.github.github</groupId>
+						<artifactId>site-maven-plugin</artifactId>
+						<version>0.9</version>
+						<configuration>
+							<message>Creating site for ${project.artifactId}, ${project.version}</message>
+							<!-- this does the trick to place every module in the correct subfolder -->
+							<path>${project.distributionManagement.site.url}</path>
+							<merge>true</merge>
+						</configuration>
+						<executions>
+							<execution>
+								<id>github-site</id>
+								<goals>
+									<goal>site</goal>
+								</goals>
+								<phase>site-deploy</phase>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+
+		</profile>
 
 
 		<!-- A profile for gpg-signing .jars when releasing -->
-        <profile>
-    		<id>sonatype-oss-release</id>
+		<profile>
+			<id>sonatype-oss-release</id>
 			<activation>
 				<property>
 					<!-- Automatically set to true on mvn release:perform -->
@@ -357,10 +357,10 @@
 					<value>true</value>
 				</property>
 			</activation>
-            <!-- Signs all artifacts before deploying to Maven Central. -->
-            <build>
-                <plugins>
-                
+			<!-- Signs all artifacts before deploying to Maven Central. -->
+			<build>
+				<plugins>
+
 					<!-- Maven-source-plugin -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -375,7 +375,7 @@
 							</execution>
 						</executions>
 					</plugin>
-		
+
 					<!-- Maven-javadoc-plugin -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -390,67 +390,67 @@
 							</execution>
 						</executions>
 					</plugin>
-	
-					<!-- Maven-gpg-plugin -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/*.asc</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
-        <profile>
-            <id>generate-docs</id>
-            <!--
+					<!-- Maven-gpg-plugin -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<excludes>
+								<exclude>**/*.asc</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>generate-docs</id>
+			<!--
 			Generates the *-source.jar and *-javadoc.jar of this artifact.
 			This profile is required to be active for release
 			builds due to the packaging requirements of the Central repo.
 			-->
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadoc</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadoc</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
 	</profiles>
 
