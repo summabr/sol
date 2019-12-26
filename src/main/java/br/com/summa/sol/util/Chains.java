@@ -20,8 +20,8 @@ import java.util.Iterator;
 
 /**
  * Convenience class to build a (delimiter separated) string from a provided
- * sequence of elements.
- *
+ * sequence of elements.<br>
+ * <br>
  * It's somewhat similar to {@link java.lang.String}.join(...) and
  * {@link java.util.StringJoiner} from Java 1.8, except it can be used with
  * arbitrary data types, not just {@link java.lang.CharSequence}.

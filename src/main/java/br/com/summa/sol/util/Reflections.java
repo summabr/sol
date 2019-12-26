@@ -35,6 +35,32 @@ public final class Reflections {
     }
 
     /**
+     * Locates all fields of a certain type, anywhere within a provided object, replacing them with the 
+     * specified instance.<br>
+     * <br>
+     * It's equivalent to: 
+     * 
+     * <pre>
+     * new Replacer().prepare(type, replacement).replaceFields(obj);
+     * </pre>
+     * 
+     * @param obj Object to be modified
+     * @param type Class type to be replaced
+     * @param replacement Replacement instance
+     * @throws IllegalAccessException if a certain field is not accessible
+     */
+	public static <T> void replaceFields(Object obj, Class<T> type, T replacement) throws IllegalAccessException {
+		new Reflector().prepare(type, replacement).replaceFields(obj);
+	}
+	
+	/**
+     * @deprecated Renamed to {@link #getAllInheritedFields}
+     */
+    public static List<Field> getAllFields(Class<?> type) throws SecurityException {
+    	return getAllInheritedFields(type);
+    }    
+    
+    /**
      * Returns a list of all fields declared by the specified class or interface, or inherired from its super
      * classes. However fields inherired from "super interfaces" are ignored.
      *
@@ -43,12 +69,20 @@ public final class Reflections {
      * classes
      * @throws SecurityException if security manager denied access to field, or class loader didn't match
      */
-    public static List<Field> getAllFields(Class<?> type) throws SecurityException {
+    public static List<Field> getAllInheritedFields(Class<?> type) throws SecurityException {
         List<Field> fields = new ArrayList<Field>();
         for (Class<?> t = type; t != null && t != Object.class; t = t.getSuperclass()) {
             fields.addAll(Arrays.asList(t.getDeclaredFields()));
         }
         return fields;
+    }
+
+    /**
+     * @deprecated Renamed to {@link #getAnyInheritedField}
+     */
+    public static Field getAnyField(Class<?> type, String name) 
+    		throws NoSuchFieldException, SecurityException {
+    	return getAnyInheritedField(type, name);
     }
 
     /**
@@ -63,7 +97,7 @@ public final class Reflections {
      * @throws NoSuchFieldException if a field with the specified name is not found
      * @throws SecurityException if security manager denied access to field, or class loader didn't match
      */
-    public static Field getAnyField(Class<?> type, String name)
+    public static Field getAnyInheritedField(Class<?> type, String name)
             throws NoSuchFieldException, SecurityException {
         try {
             return type.getDeclaredField(name);

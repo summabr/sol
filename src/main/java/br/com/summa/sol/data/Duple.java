@@ -19,8 +19,8 @@ package br.com.summa.sol.data;
 import br.com.summa.sol.util.Nullables;
 
 /**
- * A Comparable {@link Pair}.
- *
+ * A Comparable {@link Pair}.<br>
+ * <br>
  * DISCLAIMER: This class is only intended to temporarily store a disjoint
  * pair of objects, for instance when a certain method needs to return two
  * distinct results. However, in cases where these objects make any sense
