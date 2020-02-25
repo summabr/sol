@@ -1,13 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>9</version>
-	</parent>
-
-
 	<groupId>br.com.summa</groupId>
 	<artifactId>sol</artifactId>
 	<version>0.3.0-SNAPSHOT</version>
@@ -29,6 +22,7 @@
 		<name>Summa Technologies do Brasil</name>
 		<url>http://summa.com.br/</url>
 	</organization>
+
 
 
 	<properties>
@@ -61,6 +55,16 @@
 	</issueManagement>
 
 	<distributionManagement>
+
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
 
 		<site>
 			<id>${site.deploy.id}</id>
@@ -349,7 +353,7 @@
 
 		<!-- A profile for gpg-signing .jars when releasing -->
 		<profile>
-			<id>sonatype-oss-release</id>
+			<id>release</id>
 			<activation>
 				<property>
 					<!-- Automatically set to true on mvn release:perform -->
