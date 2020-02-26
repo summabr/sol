@@ -46,7 +46,7 @@
 		<developerConnection>scm:git:git@github.com:summabr/sol.git</developerConnection>
 		<url>git@github.com:summabr/sol.git</url>
 		<!-- url>http://github.com/summabr/sol/tree/master</url -->
-		<tag>HEAD</tag>
+		<tag>sol-0.3.0</tag>
 	</scm>
 
 	<issueManagement>
