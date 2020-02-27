@@ -26,7 +26,7 @@
 
 
 	<properties>
-		<site.url>http://summabr.github.io/${project.artifactId}/${project.version}</site.url>
+		<site.url>http://summabr.github.io/${project.artifactId}</site.url>
 		<github.global.server>github</github.global.server>
 		<site.deploy.id>gh-pages</site.deploy.id>
 		<site.deploy.url />
