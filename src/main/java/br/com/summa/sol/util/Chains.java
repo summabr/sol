@@ -16,9 +16,7 @@
 
 package br.com.summa.sol.util;
 
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * Convenience class to build a (delimiter separated) string from a provided
