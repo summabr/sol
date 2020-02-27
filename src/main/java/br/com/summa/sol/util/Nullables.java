@@ -39,7 +39,7 @@ public final class Nullables {
      * objects.<br>
      * <br>
      * Typical usage:<br>
-     * <pre>
+     * <pre>{@code
      * public class Example {
      *     private ... x;
      *     private ... y;
@@ -50,7 +50,10 @@ public final class Nullables {
      *         return Nullables.hashCode(x, y, z);
      *     }
      * }
-     * </pre>
+     * }</pre>
+     * 
+     * @param objs Sequence of objects
+     * @return Calculated hashCode
      */
     public static int hashCode(Object... objs) {
         final int prime = 31;
@@ -68,7 +71,7 @@ public final class Nullables {
      * <code>x.equals(y)</code>.<br>
      * <br>
      * Typical usage:<br>
-     * <pre>
+     * <pre>{@code
      * public class Example {
      *     private ... x;
      *     private ... y;
@@ -87,7 +90,12 @@ public final class Nullables {
      *         return false;
      *     }
      * }
-     * </pre>
+     * }</pre>
+     * 
+     * @param <T> The type of elements to be compared
+     * @param x An element to be compared
+     * @param y Another element to be compared
+     * @return <code>true</code> if both elements are null or identical, <code>false</code> otherwise
      */
     public static <T> boolean equals(T x, T y) {
         if (x == y) {
@@ -102,6 +110,11 @@ public final class Nullables {
     /**
      * Indicates whether two (possibly <code>null</code>) objects are
      * strictly not <code>null</code> with <code>x.equals(y)</code>.
+     * 
+     * @param <T> The type of elements to be compared
+     * @param x An element to be compared
+     * @param y Another element to be compared
+     * @return <code>true</code> if both elements are not null and identical, <code>false</code> otherwise
      */
     public static <T> boolean equalsNotNull(T x, T y) {
         if (x == null || y == null) {
@@ -116,6 +129,11 @@ public final class Nullables {
     /**
      * Indicates whether any of two objects is <code>null</code>
      * or <code>x.equals(y)</code>.
+     * 
+     * @param <T> The type of elements to be compared
+     * @param x An element to be compared
+     * @param y Another element to be compared
+     * @return <code>true</code> if both elements are identical or at least one of them is null, <code>false</code> otherwise
      */
     public static <T> boolean equalsOrNull(T x, T y) {
         return x == null || y == null || x.equals(y);
@@ -124,6 +142,10 @@ public final class Nullables {
     /**
      * Converts object to <code>String</code> if not <code>null</code>,
      * returns <code>null</code> otherwise.
+     * 
+     * @param <T> The type of the object
+     * @param obj Object to be converted
+     * @return Object converted to <code>String</code> if not <code>null</code>, or <code>null</code> otherwise
      */
     public static <T> String asString(T obj) {
         return obj == null ? null : obj.toString();
@@ -132,6 +154,10 @@ public final class Nullables {
     /**
      * Converts object to <code>String</code> if not <code>null</code>,
      * returns an empty <code>String</code> otherwise.
+     * 
+     * @param <T> The type of the object
+     * @param obj Object to be converted
+     * @return Object converted to <code>String</code> if not <code>null</code>, or empty <code>String</code> otherwise
      */
     public static <T> String asStringOrEmpty(T obj) {
         return obj == null ? "" : obj.toString();
@@ -140,6 +166,11 @@ public final class Nullables {
     /**
      * Compares two (possibly null) objects, i.e. it's similar to <code>x.compareTo(y)</code> except it
      * supports <code>null</code> values, assuming that <code>null</code> is lower than any object.
+     * 
+     * @param <T> The type of elements to be compared
+     * @param x An element to be compared
+     * @param y Another element to be compared
+     * @return Result of comparison between objects
      */
     public static <T extends Comparable<T>> int compareToWithNullsFirst(T x, T y) {
         return x == null ? y == null ? 0 : -1 : y == null ? 1 : x.compareTo(y);
@@ -148,6 +179,11 @@ public final class Nullables {
     /**
      * Compares two (possibly null) objects, i.e. it's similar to <code>x.compareTo(y)</code> except it
      * supports <code>null</code> values, assuming that <code>null</code> is greater than any object.
+     * 
+     * @param <T> The type of elements to be compared
+     * @param x An element to be compared
+     * @param y Another element to be compared
+     * @return Result of comparison between objects
      */
     public static <T extends Comparable<T>> int compareToWithNullsLast(T x, T y) {
         return x == null ? y == null ? 0 : 1 : y == null ? -1 : x.compareTo(y);
@@ -155,13 +191,19 @@ public final class Nullables {
 
     /**
      * Indicates whether provided Collection is either <code>null</code> or empty.
+     * 
+     * @param coll Provided Collection
+     * @return <code>true</code> if Collection is either <code>null</code> or empty, <code>false</code> otherwise
      */
-    public static boolean isNullOrEmpty(final Collection<?> obj) {
-        return obj == null || obj.isEmpty();
+    public static boolean isNullOrEmpty(final Collection<?> coll) {
+        return coll == null || coll.isEmpty();
     }
 
     /**
      * Indicates whether provided String is either <code>null</code> or empty.
+     * 
+     * @param str Provided String
+     * @return <code>true</code> if String is either <code>null</code> or empty, <code>false</code> otherwise
      */
     public static boolean isNullOrEmpty(final String str) {
         return str == null || str.isEmpty();
@@ -169,12 +211,17 @@ public final class Nullables {
 
     /**
      * Returns first non-null element from a sequence
+     * 
+     * @param <T> The type of elements
+     * @param elems Sequence of elements
+     * @return First non-null element from the provided sequence
      */
-    public static <T> T coalesce(T... list) {
-        if (list != null) {
-            for (T obj : list) {
-                if (obj != null) {
-                    return obj;
+    @SafeVarargs
+    public static <T> T coalesce(T... elems) {
+        if (elems != null) {
+            for (T elem : elems) {
+                if (elem != null) {
+                    return elem;
                 }
             }
         }
@@ -183,15 +230,26 @@ public final class Nullables {
 
     /**
      * Returns first non-null element from a sequence
+     * 
+     * @param <T> The type of elements
+     * @param elem1 First element
+     * @param elem2 Second element
+     * @return First non-null element from the provided sequence
      */
-    public static <T> T coalesce(T a, T b) {
-        return a != null ? a : b;
+    public static <T> T coalesce(T elem1, T elem2) {
+        return elem1 != null ? elem1 : elem2;
     }
 
     /**
      * Returns first non-null element from a sequence
+     * 
+     * @param <T> The type of elements
+     * @param elem1 First element
+     * @param elem2 Second element
+     * @param elem3 Third element
+     * @return First non-null element from the provided sequence
      */
-    public static <T> T coalesce(T a, T b, T c) {
-        return a != null ? a : b != null ? b : c;
+    public static <T> T coalesce(T elem1, T elem2, T elem3) {
+        return elem1 != null ? elem1 : elem2 != null ? elem2 : elem3;
     }
 }

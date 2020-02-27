@@ -37,7 +37,7 @@ import java.util.ListIterator;
  *
  * @author Einar Saukas
  *
- * @param E the type of elements in this collection
+ * @param <E> The type of elements stored in this collection
  */
 public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     private static final long serialVersionUID = 1L;
@@ -49,7 +49,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Constructs an empty collection limited to (greatest) <code>N</code> elements.
      *
-     * @param n strict limit <code>N</code> on the number of elements stored in this collection
+     * @param n Strict limit <code>N</code> on the number of elements stored in this collection
      */
     public ListTopN(int n) {
         this.n = n;
@@ -61,8 +61,8 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * defines an "exclusion strategy" such that, if any 2 elements are evaluated as "mutually
      * exclusive", only the greater element will be stored.
      *
-     * @param n strict limit <code>N</code> on the number of elements stored in this collection
-     * @param exclusionStrategy comparator strategy to check if 2 elements are mutually exclusive
+     * @param n Strict limit <code>N</code> on the number of elements stored in this collection
+     * @param exclusionStrategy Comparator strategy to check if 2 elements are mutually exclusive
      */
     public ListTopN(int n, ExclusionStrategy<E> exclusionStrategy) {
         this.n = n;
@@ -87,7 +87,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * element will be added and, if the collection already contained <code>N</code>
      * elements, the lowest of them will be automatically removed.
      *
-     * @param elem element to be added
+     * @param elem Element to be added
      *
      * @return <code>true</code> if this collection changed as a result of the call
      * (thus if the element was successfully added), <code>false</code> otherwise
@@ -122,7 +122,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Adds all elements from the specified collection to this collection.
      *
-     * @param coll collection containing elements to be added
+     * @param coll Collection containing elements to be added
      *
      * @return <code>true</code> if this collection changed as a result of the call
      * (thus if at least one element was successfully added), <code>false</code> otherwise
@@ -140,7 +140,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * Returns a read-only list-iterator over all top <code>N</code> elements in
      * this collection, sorted in descending order.
      *
-     * @return a read-only list-iterator over all top <code>N</code> elements in
+     * @return A read-only list-iterator over all top <code>N</code> elements in
      * this collection, sorted in descending order
      */
     @Override
@@ -151,7 +151,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Returns the number of elements in this collection.
      *
-     * @return the number of elements in this collection
+     * @return The number of elements in this collection
      */
     @Override
     public int size() {
@@ -186,7 +186,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * This operation takes at most <code>N</code> comparisons, where <code>N</code> is
      * the specified size limit.
      *
-     * @param obj element whose presence in this collection is to be tested
+     * @param obj Element whose presence in this collection is to be tested
      *
      * @return <code>true</code> if this collection contains the specified element
      *
@@ -200,7 +200,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * Returns <code>true</code> if this collection contains all elements from the
      * specified collection.
      *
-     * @param coll collection to be checked for containment in this collection
+     * @param coll Collection to be checked for containment in this collection
      *
      * @return <code>true</code> if this collection contains all elements from the
      * specified collection, <code>false</code> otherwise
@@ -215,7 +215,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * this collection, sorted in descending order. See
      * {@link java.util.LinkedList#toArray()}.
      *
-     * @return an array containing all top <code>N</code> elements in this
+     * @return An array containing all top <code>N</code> elements in this
      * collection, sorted in descending order
      */
     @Override
@@ -229,11 +229,11 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
      * returned array is that of the specified array.
      * See {@link java.util.LinkedList#toArray(Object[])}.
      *
-     * @param array the array into which all top <code>N</code> elements in
+     * @param array The array into which all top <code>N</code> elements in
      * this collection are to be stored, if it is big enough; otherwise, a
      * new array of the same runtime type will be allocated for this purpose
      *
-     * @return an array containing all top <code>N</code> elements in this
+     * @return An array containing all top <code>N</code> elements in this
      * collection, sorted in descending order
      */
     @Override
@@ -244,7 +244,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Unsupported operation
      *
-     * @throws UnsupportedOperationException
+     * @throws UnsupportedOperationException Unsupported operation
      */
     @Override
     public boolean remove(Object obj) {
@@ -254,7 +254,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Unsupported operation
      *
-     * @throws UnsupportedOperationException
+     * @throws UnsupportedOperationException Unsupported operation
      */
     @Override
     public boolean removeAll(Collection<?> coll) {
@@ -264,7 +264,7 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Unsupported operation
      *
-     * @throws UnsupportedOperationException
+     * @throws UnsupportedOperationException Unsupported operation
      */
     @Override
     public boolean retainAll(Collection<?> coll) {
@@ -292,4 +292,3 @@ public class ListTopN<E extends Comparable<E>> implements TopN<E> {
         return list.hashCode();
     }
 }
-

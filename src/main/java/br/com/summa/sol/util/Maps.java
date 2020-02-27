@@ -33,6 +33,11 @@ public final class Maps {
 
     /**
      * Removes all entries from the first map, that are currently mapped with the same key and value in the second map.
+     * 
+     * @param <K> The type of keys stored in maps
+     * @param <V> The type of values stored in maps
+     * @param minuend The first map, from where elements will be removed
+     * @param subtrahend The second map, whose elements will be removed from first map
      */
     public static <K,V> void removeAll(Map<K,V> minuend, Map<K,V> subtrahend) {
         for (Map.Entry<K,V> entry : subtrahend.entrySet()) {

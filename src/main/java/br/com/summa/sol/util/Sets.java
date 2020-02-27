@@ -35,17 +35,27 @@ public final class Sets {
     }
 
     /**
-     * Creates new <code>HashSet<T></code> from a sequence of elements T or array T[]
+     * Creates new <code>HashSet</code> from a sequence of elements T, or from array T[]
+     * 
+     * @param <T> The type of elements to be stored in this <code>HashSet</code>
+     * @param elems A sequence of elements
+     * @return A new <code>HashSet</code> that contains the provided sequence of elements
      */
-    public static <T> HashSet<T> asHashSet(T... values) {
-        HashSet<T> set = new HashSet<T>(values.length);
-        Collections.addAll(set, values);
+    @SafeVarargs
+    public static <T> HashSet<T> asHashSet(T... elems) {
+        HashSet<T> set = new HashSet<T>(elems.length);
+        Collections.addAll(set, elems);
         return set;
     }
 
     /**
      * Creates new <code>HashSet</code> that contains all elements (without repetition)
-     * from both provided <code>HashSet</code>s.
+     * from both provided <code>Collection</code>s.
+     * 
+     * @param <T> The type of elements stored in this <code>HashSet</code>
+     * @param x A provided <code>Collection</code>
+     * @param y Another provided <code>Collection</code>
+     * @return A new <code>HashSet</code> that contains all elements from both provided <code>Collection</code>s
      */
     public static <T> HashSet<T> union(Collection<T> x, Collection<T> y) {
         HashSet<T> result = new HashSet<T>(x.size() + y.size());
@@ -56,7 +66,12 @@ public final class Sets {
 
     /**
      * Creates new <code>HashSet</code> that only contains elements from both
-     * provided <code>HashSet</code>s.
+     * provided <code>Set</code>s.
+     * 
+     * @param <T> The type of elements stored in this <code>HashSet</code>
+     * @param x A provided <code>Set</code>
+     * @param y Another provided <code>Set</code>
+     * @return A new <code>HashSet</code> that only contains elements from both provided <code>Set</code>s
      */
     public static <T> HashSet<T> intersection(Set<T> x, Set<T> y) {
         HashSet<T> result = new HashSet<T>();

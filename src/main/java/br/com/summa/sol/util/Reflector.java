@@ -25,22 +25,22 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Utility class to locate all fields of a certain type, anywhere within a provided object, 
+ * Utility class to locate all fields of a certain type, anywhere within a provided object,
  * replacing them with the specified instance.<br>
  * <br>
- * It can be used to inject mocks in cases where @InjectMock don't work. For instance:
- *
+ * It can be used to inject mocks in cases where <code>@InjectMock</code> don't work. For instance:<br>
+ * <br>
  * <pre>
- * @Mock
+ * &#64;Mock
  * private FirstRepository firstRepositoryMock;
  *
- * @Mock
+ * &#64;Mock
  * private SecondRepository secondRepositoryMock;
- * 
- * @Inject @Qualifier("A")       // @InjectMock won't work here
+ *
+ * &#64;Inject &#64;Qualifier("A")       // &#64;InjectMock won't work here
  * public GenericService service;
- *     
- * @BeforeEach
+ *
+ * &#64;BeforeEach
  * public void setup() throws Exception {
  *   new Reflector()
  *      .prepare(FirstRepository.class, firstRepositoryMock)
@@ -48,68 +48,68 @@ import java.util.Set;
  *      .replaceFields(service);
  * }
  * </pre>
- * 
  *
  * @author Einar Saukas
  */
 public final class Reflector {
 
-	private Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
-	private Set<Object> visited = new HashSet<Object>();
+    private Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
+    private Set<Object> visited = new HashSet<Object>();
 
-	public Reflector() {}
+    public Reflector() {}
 
-	private Map.Entry<Class<?>, Object> findMatch(Class<?> type) {
-		for (Map.Entry<Class<?>, Object> entry : map.entrySet()) {
-			if (entry.getKey().isAssignableFrom(type)) {
-				return entry;
-			}
-		}
-		return null;
-	}
+    private Map.Entry<Class<?>, Object> findMatch(Class<?> type) {
+        for (Map.Entry<Class<?>, Object> entry : map.entrySet()) {
+            if (entry.getKey().isAssignableFrom(type)) {
+                return entry;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Specify the field type to be replaced by a certain instance. 
-	 * 
+    /**
+     * Specify the field type to be replaced by a certain instance.
+     *
+     * @param <T> Type of object to be replaced
      * @param type Class type to be replaced
      * @param replacement Replacement instance
-	 * @return itself
-	 */
-	public <T> Reflector prepare(Class<T> type, T replacement) {
-		map.put(type, replacement);
-		return this;
-	}
-	
-	/**
-	 * Apply all specified replacements upon an object.
-	 * 
+     * @return Itself
+     */
+    public <T> Reflector prepare(Class<T> type, T replacement) {
+        map.put(type, replacement);
+        return this;
+    }
+
+    /**
+     * Apply all specified replacements upon an object.
+     *
      * @param obj Object to be modified
-	 * @throws IllegalAccessException
-	 */
-	public void replaceFields(Object obj) throws IllegalAccessException {
-		if (obj != null && visited.add(obj)) {
-			for (Class<?> t = obj.getClass(); t != null && t != Object.class; t = t.getSuperclass()) {
-				for (Field field : t.getDeclaredFields()) {
-					if (!Modifier.isStatic(field.getModifiers()) && !field.getType().isPrimitive()) {
-						Map.Entry<Class<?>, Object> entry = findMatch(field.getType());
-						if (entry != null) {
-							field.setAccessible(true);
-							field.set(obj, entry.getValue());
-						} else if (Collection.class.isAssignableFrom(field.getType())) {
-							field.setAccessible(true);
-							Collection<?> collect = (Collection<?>)field.get(obj);
-							if (collect != null) {
-								for (Object elem : collect) {
-									replaceFields(elem);
-								}
-							}
-						} else if (field.getType() == Object.class || (!field.getType().toString().startsWith("class java.lang.") && !field.getType().toString().startsWith("class java.math."))) {
-							field.setAccessible(true);							
-							replaceFields(field.get(obj));
-						}
-					}			
-				}			
-			}
-		}
-	}
+     * @throws IllegalAccessException If a certain field is not accessible
+     */
+    public void replaceFields(Object obj) throws IllegalAccessException {
+        if (obj != null && visited.add(obj)) {
+            for (Class<?> t = obj.getClass(); t != null && t != Object.class; t = t.getSuperclass()) {
+                for (Field field : t.getDeclaredFields()) {
+                    if (!Modifier.isStatic(field.getModifiers()) && !field.getType().isPrimitive()) {
+                        Map.Entry<Class<?>, Object> entry = findMatch(field.getType());
+                        if (entry != null) {
+                            field.setAccessible(true);
+                            field.set(obj, entry.getValue());
+                        } else if (Collection.class.isAssignableFrom(field.getType())) {
+                            field.setAccessible(true);
+                            Collection<?> collect = (Collection<?>)field.get(obj);
+                            if (collect != null) {
+                                for (Object elem : collect) {
+                                    replaceFields(elem);
+                                }
+                            }
+                        } else if (field.getType() == Object.class || (!field.getType().toString().startsWith("class java.lang.") && !field.getType().toString().startsWith("class java.math."))) {
+                            field.setAccessible(true);
+                            replaceFields(field.get(obj));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

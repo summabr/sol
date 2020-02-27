@@ -23,6 +23,8 @@ import java.util.Collection;
  * A generic collection limited to size <code>N</code>. If more than <code>N</code>
  * elements are added, it will keep the greatest <code>N</code> elements only,
  * discarding the others.<br>
+ * 
+ * @param <E> The type of elements stored in this collection
  *
  * @author Einar Saukas
  */

@@ -16,7 +16,9 @@
 
 package br.com.summa.sol.util;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Convenience class to build a (delimiter separated) string from a provided
@@ -30,115 +32,143 @@ import java.util.Iterator;
  */
 public final class Chains {
 
-	/**
-	 * Prevents instantiation
-	 */
-	private Chains() {
-	}
+    /**
+     * Prevents instantiation
+     */
+    private Chains() {
+    }
 
-	/**
-	 * Returns a string containing the provided sequence of elements (separated by the provided delimiter).<br>
-	 * <br>
-	 * It's somewhat similar to {@link java.lang.String}.join(CharSequence delimiter, CharSequence... elems)
-	 * from Java 1.8, except it accepts all data types, not just {@link java.lang.CharSequence}.<br>
-	 * <br>
-	 * Typical usage:
-	 *
-	 * <pre>
-	 * String str1 = Chains.join(" - ", 0, 1, 1, 2, 3, 5, 8, 13); // returns "0 - 1 - 1 - 2 - 3 - 5 - 8 - 13"
-	 * String str2 = Chains.join(".", "", "a", "", "", "b", null, "c", ""); // returns ".a...b.null.c."
-	 * </pre>
-	 */
-	public static <T> String join(final CharSequence delimiter, final T... elems) {
-		StringBuilder sb = null;
-		for (Object elem : elems) {
-			if (sb == null) {
-				sb = new StringBuilder();
-			} else {
-				sb.append(delimiter);
-			}
-			sb.append(elem);
-		}
-		return sb != null ? sb.toString() : "";
-	}
+    /**
+     * Returns a string containing the provided sequence of elements (separated by the provided delimiter).<br>
+     * <br>
+     * It's somewhat similar to {@link java.lang.String#join(CharSequence delimiter, CharSequence... elems)}
+     * from Java 1.8, except it accepts all data types, not just {@link java.lang.CharSequence}.<br>
+     * <br>
+     * Typical usage:
+     *
+     * <pre>{@code
+     * String str1 = Chains.join(" - ", 0, 1, 1, 2, 3, 5, 8, 13);
+     * // returns "0 - 1 - 1 - 2 - 3 - 5 - 8 - 13"
+     *
+     * String str2 = Chains.join(".", "", "a", "", "", "b", null, "c", "");
+     * // returns ".a...b.null.c."
+     * }</pre>
+     *
+     * @param <T> Type of elements
+     * @param delimiter Provided delimiter
+     * @param elems Sequence of elements
+     * @return A string containing the provided sequence of elements (separated by the provided delimiter)
+     */
+    @SafeVarargs
+    public static <T> String join(final CharSequence delimiter, final T... elems) {
+        StringBuilder sb = null;
+        for (Object elem : elems) {
+            if (sb == null) {
+                sb = new StringBuilder();
+            } else {
+                sb.append(delimiter);
+            }
+            sb.append(elem);
+        }
+        return sb != null ? sb.toString() : "";
+    }
 
-	/**
-	 * Returns a string containing elements from the provided iterable object (separated by the provided delimiter).<br>
-	 * <br>
-	 * It's somewhat similar to {@link java.lang.String}.join(CharSequence delimiter, Iterable<? extends CharSequence> elems)
-	 * from Java 1.8, except it accepts all data types, not just {@link java.lang.CharSequence}.<br>
-	 * <br>
-	 * Typical usage:
-	 *
-	 * <pre>
-	 * List<Integer> list = Arrays.asList(1,2,3,4,5);
-	 * String str = Chains.traverse(" - ", list); // returns "1 - 2 - 3 - 4 - 5"
-	 * </pre>
-	 *
-	 * Notice it also works for other collections:
-	 *
-	 * <pre>
-	 * Map<String, Object> map = new LinkedHashMap<String, Object>();
-	 * map.put("a", 1);
-	 * map.put("b", 2);
-	 * map.put("c", 3);
-	 * ...
-	 * String keys = Chains.traverse("-", map.keySet()); // returns "a-b-c"
-	 * String vals = Chains.traverse("-", map.values()); // returns "1-2-3"
-	 * String both = Chains.traverse(" AND ", map.entrySet()); // returns "a=1 AND b=2 AND c=3"
-	 * </pre>
-	 */
-	public static String traverse(final CharSequence delimiter, final Iterable<?> obj) {
-		return traverse(delimiter, obj.iterator());
-	}
+    /**
+     * Returns a String containing elements from the provided iterable object (separated by the provided delimiter).<br>
+     * <br>
+     * It's somewhat similar to {@link java.lang.String#join(CharSequence delimiter, Iterable elems)}
+     * from Java 1.8, except it accepts all data types, not just {@link java.lang.CharSequence}.<br>
+     * <br>
+     * Typical usage:
+     *
+     * <pre>{@code
+     * List<Integer> list = Arrays.asList(1,2,3,4,5);
+     * String str = Chains.traverse(" - ", list);
+     * // returns "1 - 2 - 3 - 4 - 5"
+     * }</pre>
+     *
+     * Notice it also works for other collections:
+     *
+     * <pre>{@code
+     * Map<String, Object> map = new LinkedHashMap<String, Object>();
+     * map.put("a", 1);
+     * map.put("b", 2);
+     * map.put("c", 3);
+     * ...
+     * String keys = Chains.traverse("-", map.keySet());
+     * // returns "a-b-c"
+     *
+     * String vals = Chains.traverse("-", map.values());
+     * // returns "1-2-3"
+     *
+     * String both = Chains.traverse(" AND ", map.entrySet());
+     * // returns "a=1 AND b=2 AND c=3"
+     * }</pre>
+     *
+     * @param delimiter Provided delimiter
+     * @param obj Iterable object
+     * @return A String containing elements from the provided iterable object (separated by the provided delimiter)
+     */
+    public static String traverse(final CharSequence delimiter, final Iterable<?> obj) {
+        return traverse(delimiter, obj.iterator());
+    }
 
-	/**
-	 * Returns a string containing elements from the provided iterator (separated by the provided delimiter)).<br>
-	 * <br>
-	 * It's somewhat similar to {@link java.lang.String}.join(CharSequence delimiter, Iterable<? extends CharSequence> elems)
-	 * from Java 1.8, except it accepts all data types, not just {@link java.lang.CharSequence}.<br>
-	 * <br>
-	 * Typical usage:
-	 *
-	 * <pre>
-	 * LinkedList list = ...
-	 * String str = Chains.traverse(" - ", list.descendingIterator());
-	 * </pre>
-	 */
-	public static String traverse(final CharSequence delimiter, final Iterator<?> it) {
-		final StringBuilder sb = new StringBuilder();
-		if (it.hasNext()) {
-			sb.append(it.next());
-			while (it.hasNext()) {
-				sb.append(delimiter).append(it.next());
-			}
-		}
-		return sb.toString();
-	}
+    /**
+     * Returns a string containing elements from the provided iterator (separated by the provided delimiter)).<br>
+     * <br>
+     * It's somewhat similar to {@link java.lang.String#join(CharSequence delimiter, Iterable elems)}
+     * from Java 1.8, except it accepts all data types, not just {@link java.lang.CharSequence}.<br>
+     * <br>
+     * Typical usage:
+     *
+     * <pre>{@code
+     * LinkedList list = new LinkedList(Arrays.asList('a', 'b', 'c'));
+     * String str = Chains.traverse(" - ", list.descendingIterator());
+     * // returns "c - b - a"
+     * }</pre>
+     *
+     * @param delimiter Provided delimiter
+     * @param it Iterator
+     * @return A String containing elements from the provided iterator (separated by the provided delimiter)
+     */
+    public static String traverse(final CharSequence delimiter, final Iterator<?> it) {
+        final StringBuilder sb = new StringBuilder();
+        if (it.hasNext()) {
+            sb.append(it.next());
+            while (it.hasNext()) {
+                sb.append(delimiter).append(it.next());
+            }
+        }
+        return sb.toString();
+    }
 
-	/**
-	 * Returns a string containing the provided sequence of elements, separated by the provided delimiter),
-	 * but skipping empty (or null) strings. So it can be used to combine results produced by multiple
-	 * <code>Chains</code>.<br>
-	 * <br>
-	 * Typical usage:
-	 *
-	 * <pre>
-	 * String str1 = Chains.traverse("-", list1);
-	 * String str2 = Chains.traverse("-", list2);
-	 * String str = Chains.merge(".", str1, str2);
-	 * </pre>
-	 */
-	public static String merge(final CharSequence delimiter, final CharSequence... elems) {
-		final StringBuilder sb = new StringBuilder();
-		for (CharSequence elem : elems) {
-			if (elem != null && elem.length() > 0) {
-				if (sb.length() > 0) {
-					sb.append(delimiter);
-				}
-				sb.append(elem);
-			}
-		}
-		return sb.toString();
-	}
+    /**
+     * Returns a string containing the provided sequence of elements, separated by the provided delimiter),
+     * but skipping empty (or null) strings. So it can be used to combine results produced by multiple
+     * <code>Chains</code>.<br>
+     * <br>
+     * Typical usage:
+     *
+     * <pre>{@code
+     * String str1 = Chains.traverse("-", list1);
+     * String str2 = Chains.traverse("-", list2);
+     * String str = Chains.merge(".", str1, str2);
+     * }</pre>
+     *
+     * @param delimiter Provided delimiter
+     * @param elems Sequence of elements
+     * @return A string containing the provided sequence of elements, separated by the provided delimiter), but skipping empty (or null) strings
+     */
+    public static String merge(final CharSequence delimiter, final CharSequence... elems) {
+        final StringBuilder sb = new StringBuilder();
+        for (CharSequence elem : elems) {
+            if (elem != null && elem.length() > 0) {
+                if (sb.length() > 0) {
+                    sb.append(delimiter);
+                }
+                sb.append(elem);
+            }
+        }
+        return sb.toString();
+    }
 }

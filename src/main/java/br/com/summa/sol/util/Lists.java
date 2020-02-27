@@ -35,14 +35,22 @@ public final class Lists {
     }
 
     /**
-     * Obtains the first element from a list, or <code>null</code> if the list is <code>null</code> or empty.
+     * Obtains the first element from a list, or <code>null</code> if the list is either <code>null</code> or empty.
+     *
+     * @param <T> Type of elements stored in list
+     * @param list Provided list
+     * @return The first element from list, or <code>null</code> if the list is either <code>null</code> or empty.
      */
     public static <T> T first(List<T> list) {
         return list != null && list.size() > 0 ? list.get(0) : null;
     }
 
     /**
-     * Obtains the last element from a list, or <code>null</code> if the list is <code>null</code> or empty.
+     * Obtains the last element from a list, or <code>null</code> if the list is either <code>null</code> or empty.
+     *
+     * @param <T> Type of elements stored in list
+     * @param list Provided list
+     * @return The last element from list, or <code>null</code> if the list is either <code>null</code> or empty.
      */
     public static <T> T last(List<T> list) {
         return list != null && list.size() > 0 ? list.get(list.size()-1) : null;
@@ -53,12 +61,17 @@ public final class Lists {
      * <br>
      * Typical usage:
      *
-     * <pre>
-     * List<T> all = ...
-     * for (List<T> sub : Lists.split(all, 20)) {
+     * <pre>{@code
+     * List<T> elems = ...
+     * for (List<T> sublist : Lists.split(elems, 20)) {
      *     ...
      * }
-     * </pre>
+     * }</pre>
+     *
+     * @param <T> Type of elements stored in list
+     * @param list List of elements to be split
+     * @param subsize Size for sublists
+     * @return Sublists of elements
      */
     public static <T> List<T>[] split(final List<T> list, final int subsize) {
         int size = list.size();
@@ -84,12 +97,17 @@ public final class Lists {
      * <br>
      * Typical usage:
      *
-     * <pre>
-     * Collection<T> all = ...
-     * for (List<T> sub : Lists.split(all.iterator(), 20)) {
+     * <pre>{@code
+     * Collection<T> elems = ...
+     * for (List<T> sublist : Lists.split(elems.iterator(), 20)) {
      *    ...
      * }
-     * </pre>
+     * }</pre>
+     *
+     * @param <T> Type of elements
+     * @param it Iterator on elements to be split
+     * @param subsize Size for sublists
+     * @return Iterable object on the original elements, split into sublists
      */
     public static <T> Iterable<List<T>> split(final Iterator<T> it, final int subsize) {
         return new Iterable<List<T>>() {
@@ -124,6 +142,11 @@ public final class Lists {
 
     /**
      * Swaps content of specified positions in a list.
+     *
+     * @param <T> Type of elements stored in list
+     * @param list List of elements
+     * @param i Index of an element to be swapped
+     * @param j Index of another element to be swapped
      */
     public static <T> void swap(List<T> list, final int i, final int j) {
         list.set(i, list.set(j, list.get(i)));

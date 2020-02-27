@@ -84,10 +84,10 @@ public class TopNTest extends AbstractTopNTest {
 
     @Test
     public void addAllAscendingValidateRepetitionOrder() {
-        Integer x1a = new Integer(1);
-        Integer x1b = new Integer(1);
-        Integer x2a = new Integer(2);
-        Integer x2b = new Integer(2);
+        Integer x1a = 1;
+        Integer x1b = 1;
+        Integer x2a = 2;
+        Integer x2b = 2;
         validateRepetitionOrder(3,
                 Arrays.asList(x1a, x1b, x2a, x2b),
                 Arrays.asList(x2a, x2b, x1a));
@@ -95,10 +95,10 @@ public class TopNTest extends AbstractTopNTest {
 
     @Test
     public void addAllDescendingValidateRepetitionOrder() {
-        Integer x1a = new Integer(1);
-        Integer x1b = new Integer(1);
-        Integer x2a = new Integer(2);
-        Integer x2b = new Integer(2);
+        Integer x1a = 1;
+        Integer x1b = 1;
+        Integer x2a = 2;
+        Integer x2b = 2;
         validateRepetitionOrder(3,
                 Arrays.asList(x2b, x2a, x1a, x1b),
                 Arrays.asList(x2b, x2a, x1a));

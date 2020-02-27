@@ -11,5 +11,6 @@ http://summabr.github.io/sol/
 
 ## Release info
 
+- sol-0.3.0: New features, backward compatible: Nullables.coalesce, Maps, Chains, and Reflector
 - sol-0.2.0: New features, backward compatible: limited collection, exclusion strategy, new Reflections, ProximityMap and Crypt convenience classes
 - sol-0.1.1: First public release

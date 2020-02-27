@@ -37,6 +37,12 @@ public final class Crypt {
 
     /**
      * Encrypt password using SHA-256, salted with username
+     * 
+     * @param username Username to be used as encryption salt
+     * @param password Password to be encrypted
+     * @return Encrypted password
+     * @throws NoSuchAlgorithmException If SHA-256 is not supported
+     * @throws UnsupportedEncodingException If UTF-8 is not supported
      */
     public static String encrypt(String username, String password)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {

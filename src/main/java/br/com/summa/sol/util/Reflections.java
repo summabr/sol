@@ -40,14 +40,15 @@ public final class Reflections {
      * <br>
      * It's equivalent to: 
      * 
-     * <pre>
-     * new Replacer().prepare(type, replacement).replaceFields(obj);
-     * </pre>
+     * <pre>{@code
+     * new Reflector().prepare(type, replacement).replaceFields(obj);
+     * }</pre>
      * 
+     * @param <T> Type of object to be replaced
      * @param obj Object to be modified
      * @param type Class type to be replaced
      * @param replacement Replacement instance
-     * @throws IllegalAccessException if a certain field is not accessible
+     * @throws IllegalAccessException If a certain field is not accessible
      */
 	public static <T> void replaceFields(Object obj, Class<T> type, T replacement) throws IllegalAccessException {
 		new Reflector().prepare(type, replacement).replaceFields(obj);
@@ -55,19 +56,23 @@ public final class Reflections {
 	
 	/**
      * @deprecated Renamed to {@link #getAllInheritedFields}
+     * @param type Specified class or interface
+     * @return list of all fields declared by the specified class or interface, or inherited from its super
+     * classes
+     * @throws SecurityException If security manager denied access to field, or class loader didn't match
      */
     public static List<Field> getAllFields(Class<?> type) throws SecurityException {
     	return getAllInheritedFields(type);
     }    
     
     /**
-     * Returns a list of all fields declared by the specified class or interface, or inherired from its super
-     * classes. However fields inherired from "super interfaces" are ignored.
+     * Returns a list of all fields declared by the specified class or interface, or inherited from its super
+     * classes. However fields inherited from "super interfaces" are ignored.
      *
      * @param type Specified class or interface
-     * @return list of all fields declared by the specified class or interface, or inherired from its super
+     * @return list of all fields declared by the specified class or interface, or inherited from its super
      * classes
-     * @throws SecurityException if security manager denied access to field, or class loader didn't match
+     * @throws SecurityException If security manager denied access to field, or class loader didn't match
      */
     public static List<Field> getAllInheritedFields(Class<?> type) throws SecurityException {
         List<Field> fields = new ArrayList<Field>();
@@ -79,6 +84,12 @@ public final class Reflections {
 
     /**
      * @deprecated Renamed to {@link #getAnyInheritedField}
+     * @param type Specified class or interface
+     * @param name Simple field name
+     * @return Field declared by the specified class or interface, or inherited from its super
+     * classes, corresponding to the specified simple field name
+     * @throws NoSuchFieldException If a field with the specified name is not found
+     * @throws SecurityException If security manager denied access to field, or class loader didn't match
      */
     public static Field getAnyField(Class<?> type, String name) 
     		throws NoSuchFieldException, SecurityException {
@@ -86,16 +97,16 @@ public final class Reflections {
     }
 
     /**
-     * Returns the field declared by the specified class or interface, or inherired from its super
-     * classes, corresponding to the specified simple field name. Fields inherired from "super interfaces"
+     * Returns the field declared by the specified class or interface, or inherited from its super
+     * classes, corresponding to the specified simple field name. Fields inherited from "super interfaces"
      * are ignored.
      *
      * @param type Specified class or interface
      * @param name Simple field name
-     * @return Field declared by the specified class or interface, or inherired from its super
+     * @return Field declared by the specified class or interface, or inherited from its super
      * classes, corresponding to the specified simple field name
-     * @throws NoSuchFieldException if a field with the specified name is not found
-     * @throws SecurityException if security manager denied access to field, or class loader didn't match
+     * @throws NoSuchFieldException If a field with the specified name is not found
+     * @throws SecurityException If security manager denied access to field, or class loader didn't match
      */
     public static Field getAnyInheritedField(Class<?> type, String name)
             throws NoSuchFieldException, SecurityException {

@@ -57,4 +57,3 @@ extends Trio<X, Y, Z> implements Comparable<Triple<X, Y, Z>> {
         return result;
     }
 }
-

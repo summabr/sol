@@ -43,9 +43,9 @@ import java.util.TreeMap;
  * distinction between <code>N</code> and <code>max</code> provided by
  * {@link TreeTopN} is really needed.
  *
- * @author Einar Saukas
+ * @param <E> The type of elements stored in this collection
  *
- * @param E the type of elements in this collection
+ * @author Einar Saukas
  */
 public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
     private static final long serialVersionUID = 1L;
@@ -60,7 +60,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
      * elements. This works exactly like {@link TreeTopN#TreeTopN(int, int)} when
      * <code>max = N</code>.
      *
-     * @param n strict limit <code>N</code> on the number of elements stored in this collection
+     * @param n Strict limit <code>N</code> on the number of elements stored in this collection
      */
     public TreeTopN(int n) {
         this(n, n);
@@ -85,8 +85,8 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
      * work exactly like {@link ListTopN} except it will be more efficient for larger
      * values of <code>N</code>.
      *
-     * @param n intended limit <code>N</code> on the number of elements stored in this collection
-     * @param max strict maximum limit on the number of elements stored in this collection
+     * @param n Intended limit <code>N</code> on the number of elements stored in this collection
+     * @param max Strict maximum limit on the number of elements stored in this collection
      */
     public TreeTopN(int n, int max) {
         this.n = n;
@@ -112,7 +112,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
      * Otherwise the specified element will be added, and other (lower) element(s)
      * may be automatically removed in this case.
      *
-     * @param elem element to be added
+     * @param elem Element to be added
      *
      * @return <code>true</code> if this collection changed as a result of the call
      * (thus if the element was successfully added), <code>false</code> otherwise
@@ -145,7 +145,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Adds all elements from the specified collection to this collection.
      *
-     * @param coll collection containing elements to be added
+     * @param coll Collection containing elements to be added
      *
      * @return <code>true</code> if this collection changed as a result of the call
      * (thus if at least one element was successfully added), <code>false</code> otherwise
@@ -190,7 +190,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
     /**
      * Returns the number of elements in this collection.
      *
-     * @return the number of elements in this collection
+     * @return The number of elements in this collection
      */
      @Override
      public int size() {
@@ -223,7 +223,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
       * at least one element <code>e</code> such that
       * <code>(obj==null ? e==null : obj.equals(e))</code>.
       *
-      * @param obj element whose presence in this collection is to be tested
+      * @param obj Element whose presence in this collection is to be tested
       *
       * @return <code>true</code> if this collection contains the specified element
       *
@@ -240,7 +240,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
       * Returns <code>true</code> if this collection contains all elements from the
       * specified collection.
       *
-      * @param col collection to be checked for containment in this collection
+      * @param coll Collection to be checked for containment in this collection
       *
       * @return <code>true</code> if this collection contains all elements from the
       * specified collection, <code>false</code> otherwise
@@ -260,7 +260,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
       * this collection, sorted in descending order. See
       * {@link java.util.LinkedList#toArray()}.
       *
-      * @return an array containing all top <code>N</code> elements in this
+      * @return An array containing all top <code>N</code> elements in this
       * collection, sorted in descending order
       */
      @Override
@@ -282,11 +282,11 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
       * returned array is that of the specified array.
       * See {@link java.util.LinkedList#toArray(Object[])}.
       *
-      * @param a the array into which all top <code>N</code> elements in
+      * @param array The array into which all top <code>N</code> elements in
       * this collection are to be stored, if it is big enough; otherwise, a
       * new array of the same runtime type will be allocated for this purpose
       *
-      * @return an array containing all top <code>N</code> elements in this
+      * @return An array containing all top <code>N</code> elements in this
       * collection, sorted in descending order
       */
      @Override
@@ -310,7 +310,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
      /**
       * Unsupported operation
       *
-      * @throws UnsupportedOperationException
+      * @throws UnsupportedOperationException Unsupported operation
       */
      @Override
      public boolean remove(Object obj) {
@@ -320,7 +320,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
      /**
       * Unsupported operation
       *
-      * @throws UnsupportedOperationException
+      * @throws UnsupportedOperationException Unsupported operation
       */
      @Override
      public boolean removeAll(Collection<?> coll) {
@@ -330,7 +330,7 @@ public class TreeTopN<E extends Comparable<E>> implements TopN<E> {
      /**
       * Unsupported operation
       *
-      * @throws UnsupportedOperationException
+      * @throws UnsupportedOperationException Unsupported operation
       */
      @Override
      public boolean retainAll(Collection<?> coll) {
