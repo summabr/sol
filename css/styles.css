@@ -293,7 +293,7 @@ Full-Width Styles
   background: -ms-linear-gradient(top, #373737, #212121);
   background: -o-linear-gradient(top, #373737, #212121);
   background: linear-gradient(top, #373737, #212121);
-  background: #000000 url('../images/sundown.jpg') no-repeat 65% 100% ;
+  background: #000000 url('../unprofound/sundown.jpg') no-repeat 65% 100% ;
   background-size: 25% 100%;
   background-clip: content-box;
 }}

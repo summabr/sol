@@ -40,14 +40,14 @@
 <a class="jxr_linenumber" name="30" href="#30">30</a>  
 <a class="jxr_linenumber" name="31" href="#31">31</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../br/com/summa/sol/data/ProximityMapTest.html">ProximityMapTest</a> {
 <a class="jxr_linenumber" name="32" href="#32">32</a>  
-<a class="jxr_linenumber" name="33" href="#33">33</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; javanese = <strong class="jxr_keyword">new</strong> Pair&lt;&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(-42), UnicodeScript.JAVANESE);
-<a class="jxr_linenumber" name="34" href="#34">34</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; greek = <strong class="jxr_keyword">new</strong> Pair&lt;&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(-22), UnicodeScript.GREEK);
-<a class="jxr_linenumber" name="35" href="#35">35</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; latin = <strong class="jxr_keyword">new</strong> Pair&lt;&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(0), UnicodeScript.LATIN);
-<a class="jxr_linenumber" name="36" href="#36">36</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; gothic = <strong class="jxr_keyword">new</strong> Pair&lt;&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(22), UnicodeScript.GOTHIC);
+<a class="jxr_linenumber" name="33" href="#33">33</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; javanese = <strong class="jxr_keyword">new</strong> Pair&lt;BigDecimal, UnicodeScript&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(-42), UnicodeScript.JAVANESE);
+<a class="jxr_linenumber" name="34" href="#34">34</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; greek = <strong class="jxr_keyword">new</strong> Pair&lt;BigDecimal, UnicodeScript&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(-22), UnicodeScript.GREEK);
+<a class="jxr_linenumber" name="35" href="#35">35</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; latin = <strong class="jxr_keyword">new</strong> Pair&lt;BigDecimal, UnicodeScript&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(0), UnicodeScript.LATIN);
+<a class="jxr_linenumber" name="36" href="#36">36</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pair&lt;BigDecimal, UnicodeScript&gt; gothic = <strong class="jxr_keyword">new</strong> Pair&lt;BigDecimal, UnicodeScript&gt;(<strong class="jxr_keyword">new</strong> BigDecimal(22), UnicodeScript.GOTHIC);
 <a class="jxr_linenumber" name="37" href="#37">37</a>  
 <a class="jxr_linenumber" name="38" href="#38">38</a>      @Test
 <a class="jxr_linenumber" name="39" href="#39">39</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validateRoundDown() {
-<a class="jxr_linenumber" name="40" href="#40">40</a>          ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;&gt;();
+<a class="jxr_linenumber" name="40" href="#40">40</a>          ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;UnicodeScript&gt;();
 <a class="jxr_linenumber" name="41" href="#41">41</a>  
 <a class="jxr_linenumber" name="42" href="#42">42</a>          putAll(prox, Arrays.asList(javanese, greek, gothic, latin));
 <a class="jxr_linenumber" name="43" href="#43">43</a>  
@@ -76,7 +76,7 @@
 <a class="jxr_linenumber" name="66" href="#66">66</a>  
 <a class="jxr_linenumber" name="67" href="#67">67</a>      @Test
 <a class="jxr_linenumber" name="68" href="#68">68</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validateRoundUp() {
-<a class="jxr_linenumber" name="69" href="#69">69</a>          ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;&gt;(Round.UP);
+<a class="jxr_linenumber" name="69" href="#69">69</a>          ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;UnicodeScript&gt;(Round.UP);
 <a class="jxr_linenumber" name="70" href="#70">70</a>  
 <a class="jxr_linenumber" name="71" href="#71">71</a>          putAll(prox, Arrays.asList(javanese, greek, gothic, latin));
 <a class="jxr_linenumber" name="72" href="#72">72</a>  
@@ -105,7 +105,7 @@
 <a class="jxr_linenumber" name="95" href="#95">95</a>  
 <a class="jxr_linenumber" name="96" href="#96">96</a>      @Test
 <a class="jxr_linenumber" name="97" href="#97">97</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validateSingle() {
-<a class="jxr_linenumber" name="98" href="#98">98</a>          ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;&gt;();
+<a class="jxr_linenumber" name="98" href="#98">98</a>          ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;UnicodeScript&gt;();
 <a class="jxr_linenumber" name="99" href="#99">99</a>  
 <a class="jxr_linenumber" name="100" href="#100">100</a>         putAll(prox, Arrays.asList(javanese));
 <a class="jxr_linenumber" name="101" href="#101">101</a> 
@@ -117,7 +117,7 @@
 <a class="jxr_linenumber" name="107" href="#107">107</a> 
 <a class="jxr_linenumber" name="108" href="#108">108</a>     @Test
 <a class="jxr_linenumber" name="109" href="#109">109</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validateEmpty() {
-<a class="jxr_linenumber" name="110" href="#110">110</a>         ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;&gt;();
+<a class="jxr_linenumber" name="110" href="#110">110</a>         ProximityMap&lt;UnicodeScript&gt; prox = <strong class="jxr_keyword">new</strong> ProximityMap&lt;UnicodeScript&gt;();
 <a class="jxr_linenumber" name="111" href="#111">111</a> 
 <a class="jxr_linenumber" name="112" href="#112">112</a>         validate(prox, -1000, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="113" href="#113">113</a>         validate(prox, 1000, <strong class="jxr_keyword">null</strong>);
