@@ -16,11 +16,50 @@
 package br.com.summa.sol.util;
 
 import static br.com.summa.sol.util.Nullables.coalesce;
+import static br.com.summa.sol.util.Nullables.asString;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 public class NullablesTest {
+
+    @Test
+    public void testEquals() {
+        Integer i = 0;
+        Integer n = null;
+
+        assertEquals(false, Nullables.equals(i, null));
+        assertEquals(true, Nullables.equals(i, 0));
+        assertEquals(false, Nullables.equals(i, 1));
+        assertEquals(true, Nullables.equals(n, null));
+        assertEquals(false, Nullables.equals(n, 0));
+        assertEquals(false, Nullables.equals(n, 1));
+
+        assertEquals(false, Nullables.equalsNotNull(i, null));
+        assertEquals(true, Nullables.equalsNotNull(i, 0));
+        assertEquals(false, Nullables.equalsNotNull(i, 1));
+        assertEquals(false, Nullables.equalsNotNull(n, null));
+        assertEquals(false, Nullables.equalsNotNull(n, 0));
+        assertEquals(false, Nullables.equalsNotNull(n, 1));
+
+        assertEquals(true, Nullables.equalsOrNull(i, null));
+        assertEquals(true, Nullables.equalsOrNull(i, 0));
+        assertEquals(false, Nullables.equalsOrNull(i, 1));
+        assertEquals(true, Nullables.equalsOrNull(n, null));
+        assertEquals(true, Nullables.equalsOrNull(n, 0));
+        assertEquals(true, Nullables.equalsOrNull(n, 1));
+    }
+
+    @Test
+    public void testAsString() {
+        assertEquals(null, asString(null));
+        assertEquals("", asString(""));
+        assertEquals("1", asString(1));
+        assertEquals("abc", asString(null, "abc"));
+        assertEquals("", asString("", "abc"));
+        assertEquals("1", asString(1, "abc"));
+    }
+
     @Test
     public void testCoalesce1Param() {
         assertEquals(null, coalesce(null));
