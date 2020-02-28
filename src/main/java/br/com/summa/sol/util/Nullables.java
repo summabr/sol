@@ -51,7 +51,7 @@ public final class Nullables {
      *     }
      * }
      * }</pre>
-     * 
+     *
      * @param objs Sequence of objects
      * @return Calculated hashCode
      */
@@ -91,13 +91,12 @@ public final class Nullables {
      *     }
      * }
      * }</pre>
-     * 
-     * @param <T> The type of elements to be compared
+     *
      * @param x An element to be compared
      * @param y Another element to be compared
      * @return <code>true</code> if both elements are null or identical, <code>false</code> otherwise
      */
-    public static <T> boolean equals(T x, T y) {
+    public static boolean equals(Object x, Object y) {
         if (x == y) {
             return true;
         }
@@ -110,13 +109,12 @@ public final class Nullables {
     /**
      * Indicates whether two (possibly <code>null</code>) objects are
      * strictly not <code>null</code> with <code>x.equals(y)</code>.
-     * 
-     * @param <T> The type of elements to be compared
+     *
      * @param x An element to be compared
      * @param y Another element to be compared
      * @return <code>true</code> if both elements are not null and identical, <code>false</code> otherwise
      */
-    public static <T> boolean equalsNotNull(T x, T y) {
+    public static boolean equalsNotNull(Object x, Object y) {
         if (x == null || y == null) {
             return false;
         }
@@ -129,44 +127,52 @@ public final class Nullables {
     /**
      * Indicates whether any of two objects is <code>null</code>
      * or <code>x.equals(y)</code>.
-     * 
-     * @param <T> The type of elements to be compared
+     *
      * @param x An element to be compared
      * @param y Another element to be compared
      * @return <code>true</code> if both elements are identical or at least one of them is null, <code>false</code> otherwise
      */
-    public static <T> boolean equalsOrNull(T x, T y) {
+    public static boolean equalsOrNull(Object x, Object y) {
         return x == null || y == null || x.equals(y);
     }
 
     /**
      * Converts object to <code>String</code> if not <code>null</code>,
      * returns <code>null</code> otherwise.
-     * 
-     * @param <T> The type of the object
+     *
      * @param obj Object to be converted
      * @return Object converted to <code>String</code> if not <code>null</code>, or <code>null</code> otherwise
      */
-    public static <T> String asString(T obj) {
-        return obj == null ? null : obj.toString();
+    public static String asString(Object obj) {
+        return obj != null ? obj.toString() : null;
     }
 
     /**
      * Converts object to <code>String</code> if not <code>null</code>,
-     * returns an empty <code>String</code> otherwise.
-     * 
-     * @param <T> The type of the object
+     * returns the provided fallback <code>String</code> otherwise.
+     *
+     * @param obj Object to be converted
+     * @param fallback Fallback <code>String</code> to be returned if object is <code>null</code>
+     * @return Object converted to <code>String</code> if not <code>null</code>, or fallback <code>String</code> otherwise
+     */
+    public static String asString(Object obj, String fallback) {
+        return obj != null ? obj.toString() : fallback;
+    }
+
+    /**
+     * @deprecated Replaced by <code>asString(obj, "")</code>
+     *
      * @param obj Object to be converted
      * @return Object converted to <code>String</code> if not <code>null</code>, or empty <code>String</code> otherwise
      */
-    public static <T> String asStringOrEmpty(T obj) {
-        return obj == null ? "" : obj.toString();
+    public static String asStringOrEmpty(Object obj) {
+        return asString(obj, "");
     }
 
     /**
      * Compares two (possibly null) objects, i.e. it's similar to <code>x.compareTo(y)</code> except it
      * supports <code>null</code> values, assuming that <code>null</code> is lower than any object.
-     * 
+     *
      * @param <T> The type of elements to be compared
      * @param x An element to be compared
      * @param y Another element to be compared
@@ -179,7 +185,7 @@ public final class Nullables {
     /**
      * Compares two (possibly null) objects, i.e. it's similar to <code>x.compareTo(y)</code> except it
      * supports <code>null</code> values, assuming that <code>null</code> is greater than any object.
-     * 
+     *
      * @param <T> The type of elements to be compared
      * @param x An element to be compared
      * @param y Another element to be compared
@@ -191,7 +197,7 @@ public final class Nullables {
 
     /**
      * Indicates whether provided Collection is either <code>null</code> or empty.
-     * 
+     *
      * @param coll Provided Collection
      * @return <code>true</code> if Collection is either <code>null</code> or empty, <code>false</code> otherwise
      */
@@ -201,7 +207,7 @@ public final class Nullables {
 
     /**
      * Indicates whether provided String is either <code>null</code> or empty.
-     * 
+     *
      * @param str Provided String
      * @return <code>true</code> if String is either <code>null</code> or empty, <code>false</code> otherwise
      */
@@ -211,7 +217,7 @@ public final class Nullables {
 
     /**
      * Returns first non-null element from a sequence
-     * 
+     *
      * @param <T> The type of elements
      * @param elems Sequence of elements
      * @return First non-null element from the provided sequence
@@ -230,7 +236,7 @@ public final class Nullables {
 
     /**
      * Returns first non-null element from a sequence
-     * 
+     *
      * @param <T> The type of elements
      * @param elem1 First element
      * @param elem2 Second element
@@ -242,7 +248,7 @@ public final class Nullables {
 
     /**
      * Returns first non-null element from a sequence
-     * 
+     *
      * @param <T> The type of elements
      * @param elem1 First element
      * @param elem2 Second element
