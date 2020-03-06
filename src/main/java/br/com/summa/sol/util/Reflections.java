@@ -17,6 +17,7 @@
 package br.com.summa.sol.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +33,23 @@ public final class Reflections {
      * Prevents instantiation
      */
     private Reflections() {
+    }
+
+    /**
+     * Returns a list of all methods declared by the specified class or interface, or inherited from its super
+     * classes. However methods inherited from "super interfaces" are ignored.
+     *
+     * @param type Specified class or interface
+     * @return list of all methods declared by the specified class or interface, or inherited from its super
+     * classes
+     * @throws SecurityException If security manager denied access to method, or class loader didn't match
+     */
+    public static List<Method> getAllMethods(Class<?> type) throws SecurityException {
+        List<Method> methods = new ArrayList<Method>();
+        for (Class<?> t = type; t != null && t != Object.class; t = t.getSuperclass()) {
+            methods.addAll(Arrays.asList(t.getDeclaredMethods()));
+        }
+        return methods;
     }
 
     /**
