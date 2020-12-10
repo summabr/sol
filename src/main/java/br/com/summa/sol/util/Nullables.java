@@ -149,7 +149,9 @@ public final class Nullables {
 
     /**
      * Converts object to <code>String</code> if not <code>null</code>,
-     * returns the provided fallback <code>String</code> otherwise.
+     * returns the provided fallback <code>String</code> otherwise.<br>
+     * <br>
+     * It works exactly like <code>asString(coalesce(obj, fallback))</code>.
      *
      * @param obj Object to be converted
      * @param fallback Fallback <code>String</code> to be returned if object is <code>null</code>
