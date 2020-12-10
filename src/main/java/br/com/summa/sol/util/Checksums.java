@@ -38,10 +38,10 @@ public final class Checksums {
 	 * Calculates checksum of a sequence of (possibly <code>null</code>)
 	 * objects.<br>
 	 * <br>
-	 * It's somewhat similar to {@link Nullables.hashCode(Object... objs)} except
-	 * using obj.toString() instead of obj.hashCode(). It's supposed to provide
-	 * better results regardless of the quality of individual hashCode() implementations,
-	 * although it's more expensive to calculate.<br>
+	 * It's somewhat similar to {@link br.com.summa.sol.util.Nullables.hashCode(Object... objs)}
+	 * except using <code>obj.toString()</code> instead of <code>obj.hashCode()</code>. It should
+	 * provide better results regardless of the quality of individual <code>hashCode()</code>
+	 * implementations, although it's more expensive to calculate.<br>
 	 * <br>
 	 * Typical usage:
 	 *
