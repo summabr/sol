@@ -20,64 +20,85 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.TreeMap;
 
+/** 
+ * A generic collection that maps numeric keys to values. It works like a regular map, 
+ * except when it doesn't contain a certain key, it's capable of finding the closest 
+ * existing key.<br> 
+ * <br> 
+ * Typical usage: 
+ * 
+ * <pre>{@code 
+ * ProximityMap<String> prox = new ProximityMap<String>(); 
+ * prox.put(new BigDecimal(1), "a"); 
+ * prox.put(new BigDecimal(4), "b"); 
+ * prox.put(new BigDecimal(6), "c"); 
+ * ... 
+ * String s = prox.closestValue(new BigDecimal(3)); 
+ * // returns "b" 
+ * }</pre> 
+ * 
+ * @author Einar Saukas 
+ * 
+ * @param <V> The type of elements stored in this collection 
+ */
 public class ProximityMap<V> extends TreeMap<BigDecimal, V> {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public static enum Round {
-        DOWN,
-        UP;
-    }
+	public static enum Round {
+		DOWN,
+		UP;
+	}
 
-    private Round round;
+	private Round round;
 
-    public ProximityMap() {
-        this(Round.DOWN);
-    }
+	public ProximityMap() {
+		this(Round.DOWN);
+	}
 
-    public ProximityMap(Round round) {
-        this.round = round;
-    }
+	public ProximityMap(Round round) {
+		this.round = round;
+	}
 
-    public Map.Entry<BigDecimal, V> closestEntry(BigDecimal key) {
-        // find exact or lower key match
-        Map.Entry<BigDecimal, V> lower = floorEntry(key);
+	public Map.Entry<BigDecimal, V> closestEntry(BigDecimal key) {
+		// find exact or lower key match
+		Map.Entry<BigDecimal, V> lower = floorEntry(key);
 
-        // exact match?
-        if (lower != null && lower.getKey().compareTo(key) == 0) {
-            return lower;
-        }
+		// exact match?
+		if (lower != null && lower.getKey().compareTo(key) == 0) {
+			return lower;
+		}
 
-        // find higher key match
-        Map.Entry<BigDecimal, V> higher = higherEntry(key);
+		// find higher key match
+		Map.Entry<BigDecimal, V> higher = higherEntry(key);
 
-        // beyond minimum or maximum keys?
-        if (lower == null) {
-            return higher;
-        } else if (higher == null) {
-            return lower;
-        }
+		// beyond minimum or maximum keys?
+		if (lower == null) {
+			return higher;
+		} else if (higher == null) {
+			return lower;
+		}
 
-        // closer to lower or higher key match?
-        int cmp = higher.getKey().subtract(key).compareTo(key.subtract(lower.getKey()));
-        if (cmp > 0) {
-            // closer to lower key
-            return lower;
-        } else if (cmp < 0) {
-            // closer to higher key
-            return higher;
-        }
+		// closer to lower or higher key match?
+		int cmp = higher.getKey().subtract(key).compareTo(key.subtract(lower.getKey()));
+		if (cmp > 0) {
+			// closer to lower key
+			return lower;
+		} else if (cmp < 0) {
+			// closer to higher key
+			return higher;
+		}
 
-        // closest
-        return round == Round.DOWN ? lower : higher;
-    }
+		// closest
+		return round == Round.DOWN ? lower : higher;
+	}
 
-    public BigDecimal closestKey(BigDecimal key) {
-        Map.Entry<BigDecimal, V> entry = closestEntry(key);
-        return entry != null ? entry.getKey() : null;
-    }
+	public BigDecimal closestKey(BigDecimal key) {
+		Map.Entry<BigDecimal, V> entry = closestEntry(key);
+		return entry != null ? entry.getKey() : null;
+	}
 
-    public V closestValue(BigDecimal key) {
-        Map.Entry<BigDecimal, V> entry = closestEntry(key);
-        return entry != null ? entry.getValue() : null;
-    }
+	public V closestValue(BigDecimal key) {
+		Map.Entry<BigDecimal, V> entry = closestEntry(key);
+		return entry != null ? entry.getValue() : null;
+	}
 }
