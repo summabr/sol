@@ -26,48 +26,48 @@ import java.util.zip.Checksum;
  * @author Einar Saukas
  */
 public final class Checksums {
-	public static Charset UTF_8 = Charset.forName("UTF-8");
+    public static Charset UTF_8 = Charset.forName("UTF-8");
 
-	/*
-	 * Prevents instantiation
-	 */
-	private Checksums() {
-	}
+    /*
+     * Prevents instantiation
+     */
+    private Checksums() {
+    }
 
-	/**
-	 * Calculates checksum of a sequence of (possibly <code>null</code>)
-	 * objects.<br>
-	 * <br>
-	 * It's somewhat similar to {@link br.com.summa.sol.util.Nullables.hashCode(Object... objs)}
-	 * except using <code>obj.toString()</code> instead of <code>obj.hashCode()</code>. It should
-	 * provide better results regardless of the quality of individual <code>hashCode()</code>
-	 * implementations, although it's more expensive to calculate.<br>
-	 * <br>
-	 * Typical usage:
-	 *
-	 * <pre>{@code
-	 * long ck = Checksums.checksum(1, "abc", 7L);
-	 * }</pre>
-	 *
-	 * @param objs Sequence of objects
-	 * @return Calculated checksum
-	 */
-	public static long checksum(Object... objs) {
-		if (objs == null) {
-			return -1L;
-		}
-		Checksum ck = new CRC32();
-		for (Object obj : objs) {
-			if (obj == null) {
-				ck.update(0);
-			} else if (obj.toString().isEmpty()) {
-				ck.update(1);
-			} else {
-				byte[] b = obj.toString().getBytes(UTF_8);
-				ck.update(2);
-				ck.update(b, 0, b.length);
-			}
-		}
-		return ck.getValue();
-	}
+    /**
+     * Calculates checksum of a sequence of (possibly <code>null</code>)
+     * objects.<br>
+     * <br>
+     * It's somewhat similar to {@link br.com.summa.sol.util.Nullables#hashCode(Object... objs)}
+     * except using <code>obj.toString()</code> instead of <code>obj.hashCode()</code>. It should
+     * provide better results regardless of the quality of individual <code>hashCode()</code>
+     * implementations, although it's more expensive to calculate.<br>
+     * <br>
+     * Typical usage:
+     *
+     * <pre>{@code
+     * long ck = Checksums.checksum(1, "abc", 7L);
+     * }</pre>
+     *
+     * @param objs Sequence of objects
+     * @return Calculated checksum
+     */
+    public static long checksum(Object... objs) {
+        if (objs == null) {
+            return -1L;
+        }
+        Checksum ck = new CRC32();
+        for (Object obj : objs) {
+            if (obj == null) {
+                ck.update(0);
+            } else if (obj.toString().isEmpty()) {
+                ck.update(1);
+            } else {
+                byte[] b = obj.toString().getBytes(UTF_8);
+                ck.update(2);
+                ck.update(b, 0, b.length);
+            }
+        }
+        return ck.getValue();
+    }
 }
