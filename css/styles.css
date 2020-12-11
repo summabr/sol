@@ -228,7 +228,7 @@ hr {
   height: 1px;
   margin-bottom: 5px;
   border: none;
-  background: url('../images/bg_hr.png') repeat-x center; /* ../unprofound/sundown.jpg*/
+  background: url('../images/bg_hr.png') repeat-x center; /* ../images/sundown.jpg*/
 }
 
 table {
