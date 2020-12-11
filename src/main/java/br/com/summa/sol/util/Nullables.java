@@ -162,16 +162,6 @@ public final class Nullables {
     }
 
     /**
-     * @deprecated Replaced by <code>asString(obj, "")</code>
-     *
-     * @param obj Object to be converted
-     * @return Object converted to <code>String</code> if not <code>null</code>, or empty <code>String</code> otherwise
-     */
-    public static String asStringOrEmpty(Object obj) {
-        return asString(obj, "");
-    }
-
-    /**
      * Compares two (possibly null) objects, i.e. it's similar to <code>x.compareTo(y)</code> except it
      * supports <code>null</code> values, assuming that <code>null</code> is lower than any object.
      *
